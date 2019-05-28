@@ -4,7 +4,7 @@ public class Game {
 	private Player[] players;
 	private Logic logic;
 	
-	//das finde ich nicht gut ändere das!! 
+	
 	
 	public enum Area{
 		
