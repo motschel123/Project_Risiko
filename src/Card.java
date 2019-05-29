@@ -1,4 +1,4 @@
-import java.awt.Image
+import java.awt.Image;
 
 abstract public class Card {
 	
