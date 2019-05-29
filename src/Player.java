@@ -4,6 +4,7 @@ import java.util.ArrayList;
 /*
  * 
  * @author Felix Lehner
+ * @author Marcel Schöckel
  */
 public class Player {
 	/** The name that gets displayed. */
@@ -19,4 +20,13 @@ public class Player {
 		this.color = color;
 	}
 	
+	
+	/** Getter Methods*/
+	public Color getColor(){
+		return color;
+	}
+	
+	public String getName(){
+		return name;
+	}
 }
