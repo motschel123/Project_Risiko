@@ -3,7 +3,7 @@ import java.awt.Color;
 public class Game {
 	private Player[] players;
 	private Logic logic;
-	
+	private Card[] cards;
 	
 	
 	public enum Area{
@@ -14,6 +14,7 @@ public class Game {
 		
 		players = initPlayers(playerCount);
 		
+		cards = initCards();
 		
 	}
 	
@@ -35,6 +36,11 @@ public class Game {
 		}
 		
 		return playerArray;
+	}
+	
+	private Card[] initCards() {
+		// TODO: initiate cards from XML/JSON file to keep game consistent
+		
 	}
 	
 	private Color getPlayerColor() {
