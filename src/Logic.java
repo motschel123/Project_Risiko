@@ -1,7 +1,7 @@
 
 public class Logic {
 	
-	public static shuffle(ArrayList<Player> players, ArrayList<Card> cards){
+	public static Object[][] shuffle(ArrayList<Player> players, ArrayList<Card> cards){
 		players = shufflePlayers(players);
 		cards = shufflePlayers(cards);
 	}
