@@ -13,8 +13,10 @@ public class Game {
 	public Game(int playerCount) {
 		
 		players = initPlayers(playerCount);
-		
 		cards = initCards();
+		
+		shuffle(players, cards);
+		
 		
 	}
 	
@@ -36,6 +38,12 @@ public class Game {
 		}
 		
 		return playerArray;
+	}
+	
+	private void shuffle(){
+		Object[] obj = Logic.shuffle(players, cards);
+		players = ob[0];
+		cards = obj[1];
 	}
 	
 	private Card[] initCards() {
