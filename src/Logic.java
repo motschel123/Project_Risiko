@@ -1,9 +1,11 @@
 
 public class Logic {
 	
-	public static Object[][] shuffle(ArrayList<Player> players, ArrayList<Card> cards){
+	public statc Object[] shuffle(ArrayList<Player> players, ArrayList<Card> cards){
 		players = shufflePlayers(players);
 		cards = shufflePlayers(cards);
+		
+		return {players, cards};
 	}
 	
 	public static ArrayList<Card> shuffleCards(ArrayList<Card> cards){
