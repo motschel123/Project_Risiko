@@ -10,40 +10,35 @@ public class Game {
 		
 	}
 	
-	public Game(int playerCount) {
-		
-		players = initPlayers(playerCount);
+	public Game(String[] names, Color[] colors) {
+	
+		players = initPlayers(names, colors);
 		cards = initCards();
 		
-		shuffle(players, cards);
-		
-		
+		shuffle();
 	}
 	
-	// initiate Players
-	// TODO: make each player Enter their name/color
-	
-	private Player[] initPlayers(int playerCount) {
+	/**
+	 * Generates new players from with names and colors.
+	 * @author Felix Lehner
+	 */
+	private Player[] initPlayers(String[] names, Color[] colors) {
 		
-		String[] names = new String[playerCount];
-		Color[] colors = new Color[playerCount];
+		Player[] playerArray = new Player[names.length];
 		
-		Player[] playerArray = new Player[playerCount];
-		
-		for(Player p: playerArray) {
-			String pName = getPlayerName();
-			Color pColor = getPlayerColor();
-			
-			p = new Player(pName, pColor);
+		if (names.length == colors.length) {
+			for (int i = 0; i < playerArray.length; i++) {
+				playerArray[i] = new Player(names[i], colors[i]);
+			}
 		}
 		
 		return playerArray;
 	}
-	
-	private void shuffle(){
-		Object[] obj = Logic.shuffle(players, cards);
+  //TODO this does not make any sense
+	private void shuffle() {
+		Object[] obj = logic.shuffle(players, cards);
 		players = ob[0];
-		cards = obj[1];
+		cards = (Card) obj[1];
 	}
 	
 	private Card[] initCards() {
