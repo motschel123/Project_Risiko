@@ -15,7 +15,7 @@ class CardLoader {
      *
      * @author Felix Lehner
      */
-    public CountryCard[] loadFrom (String path) {
+    public ArrayList<CountryCard> loadFrom (String path) {
         try {
             FileReader reader = new FileReader(path);
             char character = (char) reader.read();
@@ -45,9 +45,23 @@ class CardLoader {
         }
     }
 
-    private CountryCard[] parse (ArrayList<String> lines) {
-        CountryCard[] res = new CountryCard[lines.size()];
-        return null;
-        //TODO load the cards with the attributes contained in each line
+    private ArrayList<CountryCard> parse (ArrayList<String> lines) {
+        ArrayList<CountryCard> res = new ArrayList<CountryCard>();
+        for (String in: lines) {
+         //TODO optimize
+         String[] attributes = in.split(",");
+         
+         int stars = Integer.valueOf(attributes[1]);
+         
+         String countryIdentifier = attributes[0];
+         Country country = null; //FIXME placeholder for implementation via search for loaded name
+         
+         String imgDir = attributes[2];
+         Image image = null; //FIXME load from imgDir
+         CountryCard card = new CountryCard(stars, country);
+         res.add(card);
+        }
+      
+        return res;
     }
 }
