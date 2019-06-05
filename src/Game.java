@@ -34,12 +34,12 @@ public class Game {
 	}
 	
 	/**
-	 * Generates cards from existing CSV file
+	 *Generates cards from existing JSON file
 	 * @author Marcel Schöckel
 	 */
-	private ArrayList<Card> initCards() {
-		CardLoader loader = new CardLoader();
-		return loader.loadFrom("/Assets/cards");
+	private Card[] initCards() {
+		// TODO: initiate cards from JSON file to keep game consistent
+		
 	}
 	
   	/**
@@ -63,13 +63,27 @@ public class Game {
 	}
 	
 	/**
-	 * 
-	 *
+	 * Calulates the number of cards each player gets and assignes this much cards to each player
+	 * @author Marcel Schöckel
 	 */
 	private void handoutCards(){
 		int cardsPerPlayer = Math.floor(cards.length/players);
+		int leftOverCards = cards.length % players;
 		
+		for(Player p: players){
+			p.addCards(cards.sublist(0, cardsPerPlayer));
+			cards.sublist(0, cardsPerPlayer).clear();
+		}
 		
+		if(cards.length == leftOverCards){
+			for(int x=players.length-1; i>0; i--){
+				if(cards.size()==0){
+					return;
+				}
+				players[x].addCard(cards.get(0));
+				cards.remove(0);
+			}
+		}
 	}
 	
 	private Color getPlayerColor() {
