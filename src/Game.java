@@ -63,7 +63,9 @@ public class Game {
 	}
 	
 	/**
-	 * Calulates the number of cards each player gets and assignes this much cards to each player
+	 * Calulates the number of cards each player gets and assignes this much cards to each player.
+	 * Remaining cards are given the players from back to forth.
+	 *
 	 * @author Marcel Schöckel
 	 */
 	private void handoutCards(){
