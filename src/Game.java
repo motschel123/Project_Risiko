@@ -62,6 +62,10 @@ public class Game {
 		return cards;
 	}
 	
+	/**
+	 * 
+	 *
+	 */
 	private void handoutCards(){
 		int cardsPerPlayer = Math.floor(cards.length/players);
 		
