@@ -64,8 +64,9 @@ public class Game {
 	
 	/**
 	 * Calulates the number of cards each player gets and assignes this much cards to each player.
-	 * Remaining cards are given the players from back to forth.
-	 *
+	 * Handout remaining cards from last to first player.
+	 * 
+	 * @since 05.05.2019
 	 * @author Marcel Schöckel
 	 */
 	private void handoutCards(){
