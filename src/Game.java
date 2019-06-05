@@ -60,7 +60,7 @@ public class Game {
 		Map<String, Country> countries;
 		
 		for(Card c: cCards){
-			countries.put(c.)
+			countries.put(c.getName)
 		}
 		
 		
