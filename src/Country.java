@@ -13,5 +13,5 @@ class Country {
   /**name of the country*/
   private String name;
   /**The amount of troop units*/
-  private int troopPower;
+  private int unitPower;
 }
