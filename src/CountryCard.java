@@ -7,7 +7,7 @@ import java.awt.Image;
   * @author Felix Lehner
   */
 class CountryCard extends Card {
-  public CountryCard (int stars, Country area, Image icon) {
+  public CountryCard (int stars, Country area, BufferedImage icon) {
     this.Stars = stars;
     this.area = area;
     this.icon = icon;
