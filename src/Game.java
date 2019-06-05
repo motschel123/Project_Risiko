@@ -5,12 +5,15 @@ public class Game {
 	private ArrayList<Player> players;
 	private Logic logic;
 	private ArrayList<Card> cards;
+	private Map<String, Country> countries;
 	
 	
 	public Game(String[] names, Color[] colors) {
 		
 		players = shufflePlayers(initPlayers(names, colors));
 		cards = shuffleCards(initCards());
+		countries = initCountries(cards);
+		
 		
 		handoutCards();
 		
@@ -50,6 +53,16 @@ public class Game {
 		Collection.shuffle(players);
 		
 		return players;
+	}
+	
+	private Map<String, Country> initCountries(ArrayList<Card> cCards){
+		Map<String, Country> countries;
+		
+		for(Card c: cCards){
+			countries.put(c.)
+		}
+		
+		
 	}
 	
 	/**
