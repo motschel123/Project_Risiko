@@ -29,4 +29,12 @@ public class Player {
 	public String getName(){
 		return name;
 	}
+	
+	/**
+	 * Add cards to the players hand
+	 * @author Marcel Schöckel
+	 */
+	public void addCards(ArrayList<Card> cards){
+		this.cards.addAll(cards);
+	}
 }
