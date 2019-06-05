@@ -1,5 +1,6 @@
 import java.awt.Color;
-import java.Math;
+import java.util.*;
+import java.math.*;
 
 public class Game {
 	private ArrayList<Player> players;
