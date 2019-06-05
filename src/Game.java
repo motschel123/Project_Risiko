@@ -1,30 +1,28 @@
 import java.awt.Color;
+import java.Math;
 
 public class Game {
-	private Player[] players;
+	private ArrayList<Player> players;
 	private Logic logic;
-	private Card[] cards;
+	private ArrayList<Card> cards;
 	
-	
-	public enum Area{
-		
-	}
 	
 	public Game(String[] names, Color[] colors) {
-	
-		players = initPlayers(names, colors);
-		cards = initCards();
 		
-		shuffle();
+		players = shufflePlayers(initPlayers(names, colors));
+		cards = shuffleCards(initCards());
+		
+		handoutCards();
+		
 	}
 	
 	/**
 	 * Generates new players from with names and colors.
 	 * @author Felix Lehner
 	 */
-	private Player[] initPlayers(String[] names, Color[] colors) {
+	private ArrayList<Player> initPlayers(String[] names, Color[] colors) {
 		
-		Player[] playerArray = new Player[names.length];
+		ArrayList<Player> playerArray = new Player[names.length];
 		
 		if (names.length == colors.length) {
 			for (int i = 0; i < playerArray.length; i++) {
@@ -34,15 +32,43 @@ public class Game {
 		
 		return playerArray;
 	}
-  //TODO this does not make any sense
-	private void shuffle() {
-		Object[] obj = logic.shuffle(players, cards);
-		players = ob[0];
-		cards = (Card) obj[1];
+	
+	/**
+	 *Generates cards from existing JSON file
+	 * @author Marcel Schöckel
+	 */
+	private Card[] initCards() {
+		// TODO: initiate cards from JSON file to keep game consistent
+		
 	}
 	
-	private Card[] initCards() {
-		// TODO: initiate cards from XML/JSON file to keep game consistent
+  	/**
+	 * Shuffles *Players* array in new order.
+	 * @author Marcel Schöckel
+	 */
+	private ArrayList<Player> shufflePlayers(ArrayList<Player> players) {
+		Collection.shuffle(players);
+		
+		return players;
+	}
+	
+	/**
+	 * Shuffles *Cards* array in new order.
+	 * @author Marcel Schöckel
+	 */
+	private ArrayList<Card> shuffleCards(ArrayList<Card> cards) {
+		Collection.shuffle(cards);
+		
+		return cards;
+	}
+	
+	/**
+	 * 
+	 *
+	 */
+	private void handoutCards(){
+		int cardsPerPlayer = Math.floor(cards.length/players);
+		
 		
 	}
 	
