@@ -1,9 +1,14 @@
 import java.awt.image.BufferedImage;
 
-abstract public class Card {
+public class Card {
 	
-	private int Stars;
-	private Country area;
-	private BufferedImage icon; 
+	int stars;
+	Country area;
+	BufferedImage icon; 
 	
+	public Card(int stars, Country area, BufferedImage icon) {
+		this.stars = stars;
+		this.area = area;
+		this.icon = icon;
+	}
 }
