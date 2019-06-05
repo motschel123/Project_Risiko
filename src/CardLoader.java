@@ -1,6 +1,7 @@
 import java.awt.Image;
 import java.io.*;
 import java.util.ArrayList;
+import javax.imageio.*;
 
 /**
   *
@@ -45,20 +46,34 @@ class CardLoader {
         }
     }
 
+    /**
+     * This generates a list of cards from strings.
+     * Expected format for every line: [name],[number of stars],[name of image] 
+     * @since 05.06.19
+     * @author Felix Lehner
+     */
     private ArrayList<CountryCard> parse (ArrayList<String> lines) {
         ArrayList<CountryCard> res = new ArrayList<CountryCard>();
         for (String in: lines) {
          //TODO optimize
          String[] attributes = in.split(",");
-         
+         //number of stars
          int stars = Integer.valueOf(attributes[1]);
-         
+         //name of the country
          String countryIdentifier = attributes[0];
          Country country = null; //FIXME placeholder for implementation via search for loaded name
+         //name of the image
+         //TODO maybe use name as path
+         String imgName = attributes[2];
+         BufferedImage img = null;
+         try {
+          img = ImageIO.read(new File("strawberry.jpg"));
+         } catch (IOException e) {
+          System.err.println("Failed to load image "+imgName);
+         }
          
-         String imgDir = attributes[2];
-         Image image = null; //FIXME load from imgDir
-         CountryCard card = new CountryCard(stars, country);
+       
+         CountryCard card = new CountryCard(stars, country, img);
          res.add(card);
         }
       
