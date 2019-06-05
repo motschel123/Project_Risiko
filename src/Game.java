@@ -34,12 +34,12 @@ public class Game {
 	}
 	
 	/**
-	 *Generates cards from existing JSON file
+	 * Generates cards from existing CSV file
+	 * @author Felix Lehner
 	 * @author Marcel Schöckel
 	 */
-	private Card[] initCards() {
-		// TODO: initiate cards from JSON file to keep game consistent
-		
+	private ArrayList<Card> initCards() {
+		return new CardLoader().load("/Assets/cards/");
 	}
 	
   	/**
