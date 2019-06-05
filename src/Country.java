@@ -7,7 +7,7 @@
  */
 class Country {
   /**All countries with a direct border (i.e. counties that can be attacked)*/
-  private Country[] borders;
+  private String[] borders;
   /**The player that is currently in power of this country*/
   private Player owner;
   /**name of the country*/
