@@ -16,7 +16,7 @@ class CardLoader {
      *
      * @author Felix Lehner
      */
-    public ArrayList<CountryCard> loadFrom (String path) {
+    public ArrayList<Card> loadFrom (String path) {
         try {
             FileReader reader = new FileReader(path);
             char character = (char) reader.read();
@@ -52,8 +52,8 @@ class CardLoader {
      * @since 05.06.19
      * @author Felix Lehner
      */
-    private ArrayList<CountryCard> parse (ArrayList<String> lines) {
-        ArrayList<CountryCard> res = new ArrayList<CountryCard>();
+    private ArrayList<Card> parse (ArrayList<String> lines) {
+        ArrayList<Card> res = new ArrayList<Card>();
         for (String in: lines) {
          //TODO optimize
          String[] attributes = in.split(",");
@@ -73,7 +73,7 @@ class CardLoader {
          }
          
        
-         CountryCard card = new CountryCard(stars, country, img);
+         Card card = new Card(stars, country, img);
          res.add(card);
         }
       
