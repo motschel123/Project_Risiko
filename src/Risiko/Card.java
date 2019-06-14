@@ -1,7 +1,5 @@
 package Risiko;
 
-import java.awt.image.BufferedImage;
-
 public class Card {
 	
 	final int stars;
