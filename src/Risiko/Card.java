@@ -5,18 +5,18 @@ import java.awt.image.BufferedImage;
 public class Card {
 	
 	final int stars;
-	final String area;
+	final String countryName;
 	
 	public Card(int stars, String area) {
 		this.stars = stars;
-		this.area = area;
+		this.countryName = area;
 	}
 
 	public int getStars() {
 		return stars;
 	}
 
-	public String getArea() {
-		return area;
+	public String getCountryName() {
+		return countryName;
 	}
 }
