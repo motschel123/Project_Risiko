@@ -16,7 +16,7 @@ class CSVLoader {
      * @param path file path
      * @return a list of all lines
      */
-    ArrayList<String> load (String path) {
+    public static ArrayList<String> load (String path) {
         try {
             FileReader reader = new FileReader(path);
             char character = (char) reader.read();

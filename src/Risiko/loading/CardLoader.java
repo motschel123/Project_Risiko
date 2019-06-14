@@ -1,7 +1,6 @@
 package Risiko.loading;
 
 import Risiko.Card;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
@@ -18,7 +17,7 @@ public class CardLoader {
      * @param path file path
      * @author Felix Lehner
      */
-    public ArrayList<Card> loadFrom(String path) {
+    public static ArrayList<Card> loadFrom(String path) {
         ArrayList<String> lines = new CSVLoader().load(path);
         if (lines.isEmpty()) return new ArrayList<>();
         else return parseCards(lines);
@@ -31,7 +30,7 @@ public class CardLoader {
      * @author Felix Lehner
      * @since 05.06.19
      */
-    private ArrayList<Card> parseCards(@NotNull ArrayList<String> lines) {
+    private static ArrayList<Card> parseCards(ArrayList<String> lines) {
         ArrayList<Card> res = new ArrayList<>();
         for (String in : lines) {
             String[] attributes = in.split(",");

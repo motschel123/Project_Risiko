@@ -45,15 +45,6 @@ public class Game {
 	}
 	
 	/**
-	 * Generates cards from existing CSV file
-	 * @author Felix Lehner
-	 * @author Marcel Schöckel
-	 */
-	private ArrayList<Card> initCards() {
-		return new CardLoader().loadFrom("/Assets/"+mapPath+"/cards.csv");
-	}
-	
-  	/**
 	 * Shuffles *Players* array in new order.
 	 * @author Marcel Schöckel
 	 */
@@ -61,16 +52,13 @@ public class Game {
 		Collections.shuffle(players);
 	}
 	
-	private Map<String, Country> initCountries(){
-		Map<String, Country> countries = new HashMap<>();
-
-		ArrayList<Country> loadedCountries = new CountryLoader().loadFrom("/Assets/"+mapPath+"/countries.csv");
-
-		for(Country count: loadedCountries){
-			countries.put(count.getName(), count);
-		}
-		
-		return countries;
+	/**
+	 * Generates cards from existing CSV file
+	 * @author Felix Lehner
+	 * @author Marcel Schöckel
+	 */
+	private ArrayList<Card> initCards() {
+		return CardLoader.loadFrom("/Assets/"+mapPath+"/cards.csv");
 	}
 	
 	/**
@@ -79,6 +67,19 @@ public class Game {
 	 */
 	private void shuffleCards() {
 		Collections.shuffle(cards);
+	}
+	
+	
+	private Map<String, Country> initCountries(){
+		Map<String, Country> countries = new HashMap<>();
+
+		ArrayList<Country> loadedCountries = CountryLoader.loadFrom("/Assets/"+mapPath+"/countries.csv");
+
+		for(Country count: loadedCountries){
+			countries.put(count.getName(), count);
+		}
+		
+		return countries;
 	}
 	
 	/**
@@ -108,9 +109,11 @@ public class Game {
 		}
 	}
 	
+	
 	private Color getPlayerColor() {
 		return Color.BLACK;
 	}
+	
 	
 	private String getPlayerName() {
 		return "name";
