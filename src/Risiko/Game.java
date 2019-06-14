@@ -46,7 +46,7 @@ public class Game {
 	
 	/**
 	 * Shuffles *Players* array in new order.
-	 * @author Marcel Schöckel
+	 * @author Marcel Schoeckel
 	 */
 	private void shufflePlayers() {
 		Collections.shuffle(players);
@@ -55,7 +55,7 @@ public class Game {
 	/**
 	 * Generates cards from existing CSV file
 	 * @author Felix Lehner
-	 * @author Marcel Schöckel
+	 * @author Marcel Schoeckel
 	 */
 	private ArrayList<Card> initCards() {
 		return CardLoader.loadFrom("/Assets/"+mapPath+"/cards.csv");
@@ -63,7 +63,7 @@ public class Game {
 	
 	/**
 	 * Shuffles *Cards* array in new order.
-	 * @author Marcel Schöckel
+	 * @author Marcel Schoeckel
 	 */
 	private void shuffleCards() {
 		Collections.shuffle(cards);
@@ -87,7 +87,7 @@ public class Game {
 	 * Handout remaining cards from last to first player.
 	 * 
 	 * @since 05.05.2019
-	 * @author Marcel Schöckel
+	 * @author Marcel Schoeckel
 	 */
 	private void handoutCards(){
 		int cardsPerPlayer = (int) Math.floor(cards.size()/players.size());

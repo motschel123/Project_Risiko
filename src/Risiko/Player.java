@@ -25,16 +25,6 @@ public class Player {
 		this.color = color;
 	}
 	
-	
-	/** Getter Methods*/
-	public Color getColor(){
-		return color;
-	}
-	
-	public String getName(){
-		return name;
-	}
-	
 	/**
 	 * Add cards to the players hand
 	 * @author Marcel Schöckel
@@ -42,8 +32,19 @@ public class Player {
 	public void addCards(ArrayList<Card> cards){
 		this.cards.addAll(cards);
 	}
+	
 
 	public void addCard(Card card) {
 		cards.add(card);
+	}
+	
+	/** Getter Methods*/
+	public Color getColor(){
+		return color;
+	}
+	
+	
+	public String getName(){
+		return name;
 	}
 }
