@@ -9,7 +9,7 @@ import java.util.ArrayList;
 /**
  *
  * @author Felix Lehner
- * @author Marcel Schöckel
+ * @author Marcel Schoeckel
  */
 public class Player {
 	/** The name that gets displayed. */
@@ -20,20 +20,43 @@ public class Player {
 	private ArrayList<Card> cards;
 	/**  */
 	private ArrayList<Game> areas;
+	
 	public Player(String name, Color color) {
 		this.name = name;
 		this.color = color;
 	}
 	
+	
+	public boolean placeAllCards(Game game) {
+		for(Card c: cards) {
+			if(!placeCard(game, c, c.getCountryName())) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	private boolean placeCard(Game game, Card c, String countryName) {
+		
+		if(cards.contains(c)) {
+			if(game.placeCard(this, c, countryName)) {
+				this.cards.remove(c);
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
 	/**
 	 * Add cards to the players hand
-	 * @author Marcel Schöckel
+	 * @author Marcel Schoeckel
 	 */
 	public void addCards(ArrayList<Card> cards){
 		this.cards.addAll(cards);
 	}
 	
-
+	
 	public void addCard(Card card) {
 		cards.add(card);
 	}

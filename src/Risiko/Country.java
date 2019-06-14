@@ -34,7 +34,7 @@ public class Country {
     /**
      * Constructor
      *
-     * @author Marcel Schöckel
+     * @author Marcel Schoeckel
      * @author Felix Lehner
      */
     public Country(String name, String[] borders) {
@@ -48,7 +48,7 @@ public class Country {
      * Getter&Setter methods
      *
      * @author Felix Lehner
-     * @author Marcel Schöckel
+     * @author Marcel Schoeckel
      */
     public String getName() {
         return name;

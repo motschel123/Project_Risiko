@@ -8,8 +8,8 @@ import java.util.*;
 
 public class Game {
 	private ArrayList<Player> players;
-	private Logic logic;
 	private ArrayList<Card> cards;
+	private ArrayList<Card> discardCards;
 	private Map<String, Country> countries;
 	private final String mapPath;
 	
@@ -25,6 +25,11 @@ public class Game {
 		
 		handoutCards();
 		
+		if(!placeArmee()) {
+		
+		}
+		
+		// TODO: reuse dicard cards
 	}
 	
 	/**
@@ -109,6 +114,32 @@ public class Game {
 		}
 	}
 	
+	private boolean placeArmee() {
+		for(Player p: players) {
+			if(!p.placeAllCards(this)) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	public boolean placeCard(Player p, Card c, String countryName) {
+		if(countries.containsKey(countryName)) {
+			Country country = countries.get(countryName);
+			
+			if(country.getOwner() == null || country.getOwner().getName() == p.getName()) {
+				country.setOwner(p);
+				country.setUnitPower(country.getUnitPower() + c.getStars());
+			}
+			
+			discardCards.add(c);
+			
+			return true; 
+		}
+		
+		
+		return false;
+	}
 	
 	private Color getPlayerColor() {
 		return Color.BLACK;
