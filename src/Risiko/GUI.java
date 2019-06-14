@@ -1,3 +1,5 @@
+package Risiko;
+
 /**
   * @author Felix Lehner
   */
