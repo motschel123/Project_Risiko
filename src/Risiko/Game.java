@@ -13,8 +13,17 @@ public class Game {
 	private Map<String, Country> countries;
 	private final String mapPath;
 	
+	private GUI gui;
 	
+	/**
+	 * 
+	 * @param String Array containing the player names
+	 * @param Color Array containing the player colors
+	 * @param String containing the map dir 
+	 */
 	public Game(String[] names, Color[] colors, String mapDir) {
+		
+		// Init everything
 		mapPath = mapDir;
 		players = initPlayers(names, colors);
 		shufflePlayers();
@@ -22,7 +31,11 @@ public class Game {
 		shuffleCards();
 		countries = initCountries();
 		
+		// Load up GUI
+		gui = new GUI();
 		
+		
+		// start game mechanics
 		handoutCards();
 		
 		if(!placeArmee()) {
@@ -63,7 +76,7 @@ public class Game {
 	 * @author Marcel Schoeckel
 	 */
 	private ArrayList<Card> initCards() {
-		return CardLoader.loadFrom("/Assets/"+mapPath+"/cards.csv");
+		return CardLoader.loadFrom("Assets/"+mapPath+"/cards.csv");
 	}
 	
 	/**
@@ -78,7 +91,7 @@ public class Game {
 	private Map<String, Country> initCountries(){
 		Map<String, Country> countries = new HashMap<>();
 
-		ArrayList<Country> loadedCountries = CountryLoader.loadFrom("/Assets/"+mapPath+"/countries.csv");
+		ArrayList<Country> loadedCountries = CountryLoader.loadFrom("Assets/"+mapPath+"/countries.csv");
 
 		for(Country count: loadedCountries){
 			countries.put(count.getName(), count);
