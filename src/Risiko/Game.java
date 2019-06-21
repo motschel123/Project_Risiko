@@ -33,7 +33,7 @@ public class Game {
 		//countries = initCountries();
 		
 		// Load up GUI
-		gui = new GUI(this.mapDir);
+		gui = new GUI();
 		
 		/*
 		// start game mechanics
@@ -155,13 +155,28 @@ public class Game {
 		
 		return false;
 	}
-	
-	private Color getPlayerColor() {
-		return Color.BLACK;
+
+	public ArrayList<Player> getPlayers() {
+		return players;
 	}
-	
-	
-	private String getPlayerName() {
-		return "name";
+
+	public ArrayList<Card> getCards() {
+		return cards;
+	}
+
+	public ArrayList<Card> getDiscardCards() {
+		return discardCards;
+	}
+
+	public Map<String, Country> getCountries() {
+		return countries;
+	}
+
+	public String getMapDir() {
+		return mapDir;
+	}
+
+	public GUI getGui() {
+		return gui;
 	}
 }

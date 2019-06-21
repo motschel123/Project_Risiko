@@ -1,42 +1,66 @@
 package Risiko.graphics;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.awt.EventQueue;
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JLayeredPane;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import javax.swing.JLabel;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
+import javax.swing.GroupLayout.Alignment;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.RowSpec;
 
-/**
-  * @author Felix Lehner
-  */
-public class GUI extends JFrame{
-	private JLabel bgImage;
-	private JLabel playerBar;
+import Risiko.Game;
+
+import com.jgoodies.forms.layout.FormSpecs;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+
+public class GUI {
+
+	private JFrame frame;
 	
-	String mapDir;
-	
-	public GUI(String mapDirectory) {
+	/**
+	 * Create the application.
+	 */
+	public GUI() {
+		initialize();
 		
-		//init
-		super("Risiko");
-		
-		setExtendedState(JFrame.MAXIMIZED_BOTH);
-		//setUndecorated(true);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		mapDir = mapDirectory;
+		frame.setVisible(true);
+	}
 
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		//frame.setUndecorated(true);  // fullscreen
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		// set the map as background
-		bgImage = new JLabel(new ImageIcon(getClass().getResource("map.png")));
-		add(bgImage);
+		JLayeredPane layeredPane = new JLayeredPane();
+		frame.getContentPane().add(layeredPane, BorderLayout.CENTER);
 		
-		//init player bar (top left)
-		playerBar = new JLabel();
+		JLabel bgLabel = new JLabel();
+		bgLabel = new JLabel(new ImageIcon(getClass().getResource("map.png")));
+		layeredPane.setLayout(new BorderLayout(0, 0));
+		layeredPane.add(bgLabel);
 		
-				
-		setVisible(true);
+		JPanel panel = new JPanel();
+		layeredPane.add(panel, BorderLayout.NORTH);
+	}
+
+	public int getFrameExtendedState() {
+		return frame.getExtendedState();
+	}
+	public void setFrameExtendedState(int extendedState) {
+		frame.setExtendedState(extendedState);
 	}
 }
