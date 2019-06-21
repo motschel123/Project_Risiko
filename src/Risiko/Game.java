@@ -1,5 +1,6 @@
 package Risiko;
 
+import Risiko.graphics.GUI;
 import Risiko.loading.CardLoader;
 import Risiko.loading.CountryLoader;
 
@@ -11,7 +12,7 @@ public class Game {
 	private ArrayList<Card> cards;
 	private ArrayList<Card> discardCards;
 	private Map<String, Country> countries;
-	private final String mapPath;
+	private final String mapDir;
 	
 	private GUI gui;
 	
@@ -24,17 +25,17 @@ public class Game {
 	public Game(String[] names, Color[] colors, String mapDir) {
 		
 		// Init everything
-		mapPath = mapDir;
+		this.mapDir = mapDir;
 		players = initPlayers(names, colors);
 		shufflePlayers();
-		cards = initCards();
-		shuffleCards();
-		countries = initCountries();
+		//cards = initCards();
+		//shuffleCards();
+		//countries = initCountries();
 		
 		// Load up GUI
-		gui = new GUI();
+		gui = new GUI(this.mapDir);
 		
-		
+		/*
 		// start game mechanics
 		handoutCards();
 		
@@ -42,6 +43,7 @@ public class Game {
 		
 		}
 		
+		*/
 		// TODO: reuse dicard cards
 	}
 	
@@ -76,7 +78,7 @@ public class Game {
 	 * @author Marcel Schoeckel
 	 */
 	private ArrayList<Card> initCards() {
-		return CardLoader.loadFrom("Assets/"+mapPath+"/cards.csv");
+		return CardLoader.loadFrom("Assets/"+mapDir+"/cards.csv");
 	}
 	
 	/**
@@ -91,7 +93,7 @@ public class Game {
 	private Map<String, Country> initCountries(){
 		Map<String, Country> countries = new HashMap<>();
 
-		ArrayList<Country> loadedCountries = CountryLoader.loadFrom("Assets/"+mapPath+"/countries.csv");
+		ArrayList<Country> loadedCountries = CountryLoader.loadFrom("Assets/"+mapDir+"/countries.csv");
 
 		for(Country count: loadedCountries){
 			countries.put(count.getName(), count);
