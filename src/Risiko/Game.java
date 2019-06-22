@@ -35,6 +35,11 @@ public class Game {
 		// Load up GUI
 		gui = new GUI();
 		
+		for(Player p: players) {
+			gui.addPlayer(p.getName(), p.getColor());
+		}
+		
+		
 		/*
 		// start game mechanics
 		handoutCards();
