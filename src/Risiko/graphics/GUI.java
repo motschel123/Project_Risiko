@@ -13,6 +13,11 @@ import javax.swing.ImageIcon;
 
 import javax.swing.*;
 import java.awt.FlowLayout;
+import java.awt.Font;
+
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.RowSpec;
 
 public class GUI {
 	
@@ -27,13 +32,12 @@ public class GUI {
 	private JLayeredPane layeredPane;
 	private JLabel bgLabel;
 	private JPanel playerPanel;
+	private JPanel panel;
 	
 	/**
 	 * Create the application.
 	 */
-	public GUI() {
-		playerCount = 0;
-		
+	public GUI() {		
 		initialize();
 		
 		frame.setVisible(true);
@@ -49,7 +53,6 @@ public class GUI {
 		frame.setResizable(false);
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 		
 		
 		// init the menu bar on the top to display control options
@@ -64,33 +67,40 @@ public class GUI {
 			}
 		});
 		jmGame.add(jmItemExit);
+		frame.getContentPane().setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
+		
+		// init the background
+		ImageIcon bgImageIcon = new ImageIcon(getClass().getResource("map.png"));
+		bgImageIcon = new ImageIcon(bgImageIcon.getImage().getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH)); // resize
+		
+		panel = new JPanel();
+		frame.getContentPane().add(panel);
 		
 		// init the layered pane to hold multiple other components ordered
 		layeredPane = new JLayeredPane();
+		panel.add(layeredPane);
 		layeredPane.setLayout(new BorderLayout(0, 0));
-		frame.getContentPane().add(layeredPane);
-		
-		// init the background
-		bgLabel = new JLabel(new ImageIcon(getClass().getResource("map.png")));
-		layeredPane.add(bgLabel);
+		bgLabel = new JLabel(bgImageIcon);
+		layeredPane.add(bgLabel, BorderLayout.EAST);
+		layeredPane.setLayer(bgLabel, 0);
 		
 		
 		playerPanel = new JPanel();
-		
-		layeredPane.setLayer(playerPanel, 1);
 		layeredPane.add(playerPanel, BorderLayout.NORTH);
+		layeredPane.setLayer(playerPanel, 1);
 	}
 	
 	public boolean addPlayer(String name, Color color) {
-		if(playerCount >= 6) {
+		if(playerPanel.getComponents().length >= 6) {
 			return false;
 		}
 		JLabel playerLabel = new JLabel();
 		playerLabel.setHorizontalTextPosition(JLabel.LEFT);
 		playerLabel.setBackground(color);
 		playerLabel.setText(name);
-		
+		playerLabel.setFont(new Font("Serif", Font.PLAIN, 30));
+		playerLabel.setOpaque(true);
 		
 		playerPanel.add(playerLabel, -1);
 		
