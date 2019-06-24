@@ -18,9 +18,9 @@ public class Game {
 	
 	/**
 	 * 
-	 * @param String Array containing the player names
-	 * @param Color Array containing the player colors
-	 * @param String containing the map dir 
+	 * @param names Array containing the player names
+	 * @param colors Array containing the player colors
+	 * @param mapDir containing the map dir
 	 */
 	public Game(String[] names, Color[] colors, String mapDir) {
 		
@@ -28,7 +28,7 @@ public class Game {
 		this.mapDir = mapDir;
 		players = initPlayers(names, colors);
 		shufflePlayers();
-		//cards = initCards();
+		cards = initCards();
 		//shuffleCards();
 		//countries = initCountries();
 		
@@ -53,7 +53,7 @@ public class Game {
 	}
 	
 	/**
-	 * Generates new players from with names and colors.
+	 * Generates new players with names and colors.
 	 * @author Felix Lehner
 	 */
 	private ArrayList<Player> initPlayers(String[] names, Color[] colors) {
@@ -83,7 +83,7 @@ public class Game {
 	 * @author Marcel Schoeckel
 	 */
 	private ArrayList<Card> initCards() {
-		return CardLoader.loadFrom("Assets/"+mapDir+"/cards.csv");
+		return CardLoader.loadFrom(mapDir);
 	}
 	
 	/**
@@ -98,7 +98,7 @@ public class Game {
 	private Map<String, Country> initCountries(){
 		Map<String, Country> countries = new HashMap<>();
 
-		ArrayList<Country> loadedCountries = CountryLoader.loadFrom("Assets/"+mapDir+"/countries.csv");
+		ArrayList<Country> loadedCountries = CountryLoader.loadFrom(mapDir);
 
 		for(Country count: loadedCountries){
 			countries.put(count.getName(), count);
