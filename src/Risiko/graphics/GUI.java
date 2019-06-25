@@ -105,6 +105,12 @@ public class GUI extends javax.swing.JWindow{
 		
 		return true;
 	}
+	
+	@Override
+	private void update(Graphics graphic) {
+		//TODO paint map as background
+		super.update(graphic);
+	}
 
 	public int getFrameExtendedState() {
 		return frame.getExtendedState();
