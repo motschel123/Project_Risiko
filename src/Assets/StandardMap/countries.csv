@@ -1,1 +1,12 @@
 Kulmbach,Bayreuth,Hof,Kronach,Lichtenfels
+Hof,Kronach,Kulmbach,Bayreuth,Wunsiedel
+Kronach,Coburg,Lichtenfels,Kulmbach,Hof
+Coburg,Haßberge,Bamberg,Lichtenfels,Kronach
+Lichtenfels,Coburg,Bamberg,Bayreuth,Kulmbach,Kronach
+Bamberg,Coburg,Haßberge,Schweinfurt,Kitzingen,Neustadt/Aisch-Bad Windsheim,Erlangen-Höchstadt,Forchheim,Bayreuth,Lichtenfels
+Forchheim,Bamberg,Bayreuth,Nürnberger Land,Erlangen-Höchstadt
+Bayreuth,Kulmbach,Lichtenfels,Bamberg,Forchheim,Nürnberger Land,Amberg/Sulzbach,Neustadt a.d. Waldnaab,Tirschenreuth,Wunsiedel,Hof
+Wunsiedel,Hof,Bayreuth,Tirschenreuth
+Tirschenreuth,Wunsiedel,Bayreuth,Neustadt a.d. Waldnaab
+Neustadt a.d. Waldnaab,Tirschenreuth,Bayreuth,Amberg/Sulzbach,Schwandorf
+Amberg/Sulzbach,Neustadt a.d. Waldnaab,Bayreuth,Nürnberger Land,Neumarkt/Oberpfalz,Schwandorf
