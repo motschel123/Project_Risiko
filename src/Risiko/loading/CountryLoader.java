@@ -11,17 +11,18 @@ import java.util.ArrayList;
  * @since 14.06.19
  */
 public class CountryLoader {
+    final static String countryFileName = "countries.csv";
+
     /**
      * Loads the cards and their attributes
      * from a specified CSV file and then parses them.
      *
-     * @param path file path
+     * @param folderName name of map folder
      * @author Felix Lehner
      */
-    public static ArrayList<Country> loadFrom(String path) {
-        ArrayList<String> lines = new CSVLoader().load(path);
-        if (lines.isEmpty()) return new ArrayList<>();
-        else return parseCountries(lines);
+    public static ArrayList<Country> loadFrom(String folderName) {
+        ArrayList<String> lines = CSVLoader.load(folderName + "/" + countryFileName);
+        return parseCountries(lines);
     }
 
     /**
