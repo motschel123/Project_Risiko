@@ -30,7 +30,7 @@ public class Game {
 		shufflePlayers();
 		cards = initCards();
 		//shuffleCards();
-		//countries = initCountries();
+		countries = initCountries();
 		
 		// Load up GUI
 		gui = new GUI();
