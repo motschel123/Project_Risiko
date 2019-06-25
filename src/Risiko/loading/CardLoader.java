@@ -35,6 +35,9 @@ public class CardLoader {
         ArrayList<Card> res = new ArrayList<>();
         for (String in : lines) {
             String[] attributes = in.split(",");
+            for (int i = 0; i < attributes.length; i++) {
+                attributes[i] = attributes[i].trim();
+            }
             //name of the country
             System.out.println("parsing "+in);
             String countryIdentifier = attributes[0];
