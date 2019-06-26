@@ -17,4 +17,14 @@ Mittenberg,Aschaffenburg,Main-Spessart
 Main-Spessart,Mittenberg,Aschaffenburg,Bad Kissingen,Schweinfurt,Würzburg
 Bad Kissingen,Rhön-Grabfeld,Schweinfurt,Main-Spessart
 Rhön-Grabfeld,Haßberge,Schweinfurt,Bad Kissingen
-Schweinfurt
+Schweinfurt,Rhön-Grabfeld,Bad Kissingen,Main-Spessart,Würzburg,Kitzingen,Bamberg,Haßberge
+Haßberge,Rhön-Grabfeld,Schweinfurt,Bamberg,Coburg
+Würzburg,Main-Spessart,Schweinfurt,Kitzingen,Neustadt/Aisch-Bad Windsheim
+Kitzingen,Schweinfurt,Würzburg,Neustadt/Aisch-Bad Windsheim,Bamberg
+Neustadt/Aisch-Bad Windsheim,Kitzingen,Würzburg,Ansbach,Fürth,Erlangen-Höchstadt,Bamberg
+Ansbach,Neustadt/Aisch-Bad Windsheim,Fürth,Roth,Weißenburg-Gunzenhausen
+Erlangen-Höchstadt,Bamberg,Neustadt/Aisch-Bad Windsheim,Fürth,Nürnberger Land,Forchheim
+Fürth,Erlangen-Höchstadt,Neustadt/Aisch-Bad Windsheim,Ansbach,Roth,Nürnberger Land
+Nürnberger Land,Bayreuth,Forchheim,Erlangen-Höchstadt,Fürth,Roth,Neumarkt/Oberpfalz,Amberg/Sulzbach
+Roth,Neumarkt/Oberpfalz,Nürnberger Land,Fürth,Ansbach,Weißenburg-Gunzenhausen
+Weißenburg-Gunzenhausen,Roth,Ansbach
