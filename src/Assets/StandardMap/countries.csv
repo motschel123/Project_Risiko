@@ -10,3 +10,11 @@ Wunsiedel,Hof,Bayreuth,Tirschenreuth
 Tirschenreuth,Wunsiedel,Bayreuth,Neustadt a.d. Waldnaab
 Neustadt a.d. Waldnaab,Tirschenreuth,Bayreuth,Amberg/Sulzbach,Schwandorf
 Amberg/Sulzbach,Neustadt a.d. Waldnaab,Bayreuth,Nürnberger Land,Neumarkt/Oberpfalz,Schwandorf
+Schwandorf,Neustadt a.d. Waldnaab,Amberg/Sulzbach,Neumarkt/Oberpfalz
+Neumarkt/Oberpfalz,Schwandorf,Amberg/Sulzbach,Nürnberger Land,Roth
+Aschaffenburg,Main-Spessart,Mittenberg
+Mittenberg,Aschaffenburg,Main-Spessart
+Main-Spessart,Mittenberg,Aschaffenburg,Bad Kissingen,Schweinfurt,Würzburg
+Bad Kissingen,Rhön-Grabfeld,Schweinfurt,Main-Spessart
+Rhön-Grabfeld,Haßberge,Schweinfurt,Bad Kissingen
+Schweinfurt
