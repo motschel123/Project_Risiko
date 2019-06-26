@@ -1,24 +1,12 @@
 package Risiko.graphics;
 
 import javax.swing.*;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
+import java.awt.*;
 
-import javax.swing.JLabel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ImageIcon;
-
-import javax.swing.*;
-import java.awt.FlowLayout;
-import java.awt.Font;
 import java.util.Objects;
-
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
 
 public class GUI extends javax.swing.JWindow{
 	
