@@ -23,6 +23,7 @@ public class Game {
 	 * @param mapDir containing the map dir
 	 */
 	public Game(String[] names, Color[] colors, String mapDir) {
+		this.mapDir = mapDir;
 		setup(names, colors, mapDir);
 		
 		
@@ -34,21 +35,20 @@ public class Game {
 		}
 		
 		
-		/*
+		
 		// start game mechanics
 		handoutCards();
 		
-		if(!placeArmee()) {
-		
+		if(!placeArmy()) {
+			System.err.println("Handout card error");
+			return();
 		}
 		
-		*/
-		// TODO: reuse dicard cards
+		// TODO: reuse discard cards
 	}
 	
 	private void setup(String[] names, Color[] colors, String mapDir) {
 		// Init everything
-		this.mapDir = mapDir;
 		players = initPlayers(names, colors);
 		shufflePlayers();
 		cards = initCards();
@@ -138,7 +138,7 @@ public class Game {
 		}
 	}
 	
-	private boolean placeArmee() {
+	private boolean placeArmy() {
 		for(Player p: players) {
 			if(!p.placeAllCards(this)) {
 				return false;
