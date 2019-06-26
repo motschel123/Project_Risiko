@@ -23,14 +23,8 @@ public class Game {
 	 * @param mapDir containing the map dir
 	 */
 	public Game(String[] names, Color[] colors, String mapDir) {
+		setup(names, colors, mapDir);
 		
-		// Init everything
-		this.mapDir = mapDir;
-		players = initPlayers(names, colors);
-		shufflePlayers();
-		cards = initCards();
-		//shuffleCards();
-		countries = initCountries();
 		
 		// Load up GUI
 		gui = new GUI();
@@ -50,6 +44,16 @@ public class Game {
 		
 		*/
 		// TODO: reuse dicard cards
+	}
+	
+	private void setup(String[] names, Color[] colors, String mapDir) {
+		// Init everything
+		this.mapDir = mapDir;
+		players = initPlayers(names, colors);
+		shufflePlayers();
+		cards = initCards();
+		//shuffleCards();
+		countries = initCountries();
 	}
 	
 	/**
