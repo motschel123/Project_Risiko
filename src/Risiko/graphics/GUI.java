@@ -69,18 +69,15 @@ public class GUI {
 		jmGame.add(jmItemExit);
 		frame.getContentPane().setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
+		// init the layered pane to hold multiple other components ordered
+		layeredPane = new JLayeredPane();
+		layeredPane.setLayout(new BorderLayout(0, 0));
+		frame.getContentPane().add(layeredPane);
+		
 		
 		// init the background
 		ImageIcon bgImageIcon = new ImageIcon(getClass().getResource("map.png"));
 		bgImageIcon = new ImageIcon(bgImageIcon.getImage().getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH)); // resize
-		
-		panel = new JPanel();
-		frame.getContentPane().add(panel);
-		
-		// init the layered pane to hold multiple other components ordered
-		layeredPane = new JLayeredPane();
-		panel.add(layeredPane);
-		layeredPane.setLayout(new BorderLayout(0, 0));
 		bgLabel = new JLabel(bgImageIcon);
 		layeredPane.add(bgLabel, BorderLayout.EAST);
 		layeredPane.setLayer(bgLabel, 0);
@@ -89,6 +86,9 @@ public class GUI {
 		playerPanel = new JPanel();
 		layeredPane.add(playerPanel, BorderLayout.NORTH);
 		layeredPane.setLayer(playerPanel, 1);
+		
+		panel = new JPanel();
+		frame.getContentPane().add(panel);
 	}
 	
 	public boolean addPlayer(String name, Color color) {
