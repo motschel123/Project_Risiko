@@ -1,25 +1,14 @@
 package Risiko.graphics;
 
 import javax.swing.*;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
+import java.awt.*;
 
-import javax.swing.JLabel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ImageIcon;
+import java.util.Objects;
 
-import javax.swing.*;
-import java.awt.FlowLayout;
-import java.awt.Font;
-
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-
-public class GUI {
+public class GUI extends javax.swing.JWindow{
 	
 	private int playerCount;
 
@@ -61,11 +50,7 @@ public class GUI {
 		jmGame = new JMenu("Game");
 		menuBar_1.add(jmGame);
 		jmItemExit = new JMenuItem("Exit");
-		jmItemExit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent ev) {
-				System.exit(0);
-			}
-		});
+		jmItemExit.addActionListener(ev -> System.exit(0));
 		jmGame.add(jmItemExit);
 		frame.getContentPane().setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
@@ -76,7 +61,9 @@ public class GUI {
 		
 		
 		// init the background
-		ImageIcon bgImageIcon = new ImageIcon(getClass().getResource("map.png"));
+		//TODO replace icon with real background rendering
+		//TODO remove hard-coded file names!!!
+		ImageIcon bgImageIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("Assets/StandardMap/map.png")));
 		bgImageIcon = new ImageIcon(bgImageIcon.getImage().getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH)); // resize
 		bgLabel = new JLabel(bgImageIcon);
 		layeredPane.add(bgLabel, BorderLayout.EAST);
@@ -105,6 +92,12 @@ public class GUI {
 		playerPanel.add(playerLabel, -1);
 		
 		return true;
+	}
+	
+	@Override
+	private void update(Graphics graphic) {
+		//TODO paint map as background
+		super.update(graphic);
 	}
 
 	public int getFrameExtendedState() {

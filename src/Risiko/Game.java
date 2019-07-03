@@ -18,19 +18,14 @@ public class Game {
 	
 	/**
 	 * 
-	 * @param String Array containing the player names
-	 * @param Color Array containing the player colors
-	 * @param String containing the map dir 
+	 * @param names Array containing the player names
+	 * @param colors Array containing the player colors
+	 * @param mapDir containing the map dir
 	 */
 	public Game(String[] names, Color[] colors, String mapDir) {
-		
-		// Init everything
 		this.mapDir = mapDir;
-		players = initPlayers(names, colors);
-		shufflePlayers();
-		//cards = initCards();
-		//shuffleCards();
-		//countries = initCountries();
+		setup(names, colors, mapDir);
+		
 		
 		// Load up GUI
 		gui = new GUI();
@@ -40,20 +35,29 @@ public class Game {
 		}
 		
 		
-		/*
+		
 		// start game mechanics
 		handoutCards();
 		
-		if(!placeArmee()) {
-		
+		if(!placeArmy()) {
+			System.err.println("Handout card error");
+			return();
 		}
 		
-		*/
-		// TODO: reuse dicard cards
+		// TODO: reuse discard cards
+	}
+	
+	private void setup(String[] names, Color[] colors, String mapDir) {
+		// Init everything
+		players = initPlayers(names, colors);
+		shufflePlayers();
+		cards = initCards();
+		//shuffleCards();
+		countries = initCountries();
 	}
 	
 	/**
-	 * Generates new players from with names and colors.
+	 * Generates new players with names and colors.
 	 * @author Felix Lehner
 	 */
 	private ArrayList<Player> initPlayers(String[] names, Color[] colors) {
@@ -83,7 +87,7 @@ public class Game {
 	 * @author Marcel Schoeckel
 	 */
 	private ArrayList<Card> initCards() {
-		return CardLoader.loadFrom("Assets/"+mapDir+"/cards.csv");
+		return CardLoader.loadFrom(mapDir);
 	}
 	
 	/**
@@ -98,7 +102,7 @@ public class Game {
 	private Map<String, Country> initCountries(){
 		Map<String, Country> countries = new HashMap<>();
 
-		ArrayList<Country> loadedCountries = CountryLoader.loadFrom("Assets/"+mapDir+"/countries.csv");
+		ArrayList<Country> loadedCountries = CountryLoader.loadFrom(mapDir);
 
 		for(Country count: loadedCountries){
 			countries.put(count.getName(), count);
@@ -134,7 +138,7 @@ public class Game {
 		}
 	}
 	
-	private boolean placeArmee() {
+	private boolean placeArmy() {
 		for(Player p: players) {
 			if(!p.placeAllCards(this)) {
 				return false;

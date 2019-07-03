@@ -10,22 +10,23 @@ import java.util.ArrayList;
  * @author Felix Lehner
  */
 public class CardLoader {
+    final static String cardsFileName = "cards.csv";
+
     /**
      * Loads the cards and their attributes
      * from a specified CSV file and then parses them.
      *
-     * @param path file path
+     * @param folderName map folder
      * @author Felix Lehner
      */
-    public static ArrayList<Card> loadFrom(String path) {
-        ArrayList<String> lines = new CSVLoader().load(path);
-        if (lines.isEmpty()) return new ArrayList<>();
-        else return parseCards(lines);
+    public static ArrayList<Card> loadFrom(String folderName) {
+        ArrayList<String> lines = CSVLoader.load(folderName + "/" + cardsFileName);
+        return parseCards(lines);
     }
 
     /**
      * This generates a list of cards from strings.
-     * Expected format for every line: [name],[number of stars],[name of image]
+     * Expected format for every line: [name],[number of stars]
      *
      * @author Felix Lehner
      * @since 05.06.19
@@ -34,7 +35,11 @@ public class CardLoader {
         ArrayList<Card> res = new ArrayList<>();
         for (String in : lines) {
             String[] attributes = in.split(",");
+            for (int i = 0; i < attributes.length; i++) {
+                attributes[i] = attributes[i].trim();
+            }
             //name of the country
+            System.out.println("parsing "+in);
             String countryIdentifier = attributes[0];
             //number of stars
             int stars = Integer.valueOf(attributes[1]);
