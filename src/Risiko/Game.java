@@ -30,21 +30,30 @@ public class Game {
 		// Load up GUI
 		gui = new GUI();
 		
+		gui.addCountryLabels(mapDir);
+		
 		for(Player p: players) {
-			gui.addPlayer(p.getName(), p.getColor());
+			// add each player to the GUI
+			// links each playerLabel to the related Player
+			p.addLabel(gui.addPlayer(p.getName(), p.getColor()));
 		}
+		
 		
 		
 		
 		// start game mechanics
+		startGame();
+		
+		// TODO: reuse discard cards
+	}
+	
+	private void startGame() {
 		handoutCards();
 		
 		if(!placeArmy()) {
 			System.err.println("Handout card error");
-			return();
+			return;
 		}
-		
-		// TODO: reuse discard cards
 	}
 	
 	private void setup(String[] names, Color[] colors, String mapDir) {
@@ -123,7 +132,7 @@ public class Game {
 		int leftOverCards = cards.size() % players.size();
 		
 		for(Player p: players){
-			p.addCards((ArrayList<Card>) cards.subList(0, cardsPerPlayer));
+			p.addCards(cards.subList(0, cardsPerPlayer));
 			cards.subList(0, cardsPerPlayer).clear();
 		}
 		
@@ -156,7 +165,7 @@ public class Game {
 				country.setUnitPower(country.getUnitPower() + c.getStars());
 			}
 			
-			discardCards.add(c);
+			//discardCards.add(c);
 			
 			return true; 
 		}
