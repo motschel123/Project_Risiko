@@ -20,6 +20,7 @@ public class CountryLocationLoader {
 		Map<String, Dimension> res_locations = new HashMap<String, Dimension>();
 		
 		for (String attributes : locations) {
+			System.out.println("parsing country location: "+ attributes);
 			String[] split = attributes.split(",");
             
             String name = split[0];
