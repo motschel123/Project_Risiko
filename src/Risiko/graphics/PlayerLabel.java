@@ -6,7 +6,7 @@ import java.util.List;
 
 import javax.swing.JLabel;
 
-public class PlayerLabel extends JLabel{
+public class PlayerLabel extends JLabel {
 	
 	boolean isTurn;
 	int numberOfCards = 0;
