@@ -11,18 +11,24 @@ public class Country {
      * All countries with a direct border (i.e. counties that can be attacked)
      */
     final private String[] borders;
+    
     /**
      * The player that is currently in power of this country
      */
     private Player owner;
+    
     /**
      * name of the country
      */
     final private String name;
+    
     /**
      * The amount of troop units
      */
     private int unitPower;
+    
+    /** The color that is used to reference this country on the internal color coded map. */
+    private final int color;
 
     public Country(String[] borders, Player owner, String name, int unitPower) {
         this.borders = borders;
@@ -64,6 +70,10 @@ public class Country {
 
     public String[] getBorders() {
         return borders;
+    }
+    
+    public getColor() {
+        return color;
     }
 
     public void setOwner(Player owner) {
