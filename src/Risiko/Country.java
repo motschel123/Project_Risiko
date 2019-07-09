@@ -30,10 +30,11 @@ public class Country {
     /** The color that is used to reference this country on the internal color coded map. */
     private final int color;
 
-    public Country(String[] borders, Player owner, String name, int unitPower) {
+    public Country(String[] borders, int color, Player owner, String name, int unitPower) {
         this.borders = borders;
         this.owner = owner;
         this.name = name;
+        this.color = color;
         this.unitPower = unitPower;
     }
 
@@ -43,10 +44,11 @@ public class Country {
      * @author Marcel Schoeckel
      * @author Felix Lehner
      */
-    public Country(String name, String[] borders) {
+    public Country(String name, int color, String[] borders) {
         this.name = name;
         this.borders = borders;
         this.unitPower = 0;
+        this.color = color;
         this.owner = null;
     }
 
