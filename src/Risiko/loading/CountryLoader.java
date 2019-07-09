@@ -37,10 +37,14 @@ public class CountryLoader {
             int sep = attributes.indexOf(',');
 
             String name = attributes.substring(0, sep);
+            
+            String[] rgbHex = attributes.substring(sep, sep + 3);
 
-            String[] borders = attributes.substring(sep + 1).split(",");
+            String[] borders = attributes.substring(sep + 3).split(",");
 
-            res.add(new Country(name, borders));
+            int color = Integer.parseInt(rgbHex, 16);
+            
+            res.add(new Country(name, color, borders));
         }
 
         return res;
