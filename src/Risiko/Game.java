@@ -16,6 +16,9 @@ public class Game {
 	
 	private GUI gui;
 	
+	
+	private int turn = 0;
+	
 	/**
 	 * 
 	 * @param names Array containing the player names
@@ -54,6 +57,37 @@ public class Game {
 			System.err.println("Handout card error");
 			return;
 		}
+		
+		cards = discardCards;
+		
+		nextTurn();
+	}
+	
+	private void nextTurn() {
+		/**
+		 * 1. get units
+		 * 2. place units
+		 * 3. (opt) attack
+		 * 4. move troops
+		 * 4. draw cards if allowed to
+		 */
+		
+		System.out.println(cards.size());
+		// calc player who's at turn
+		int playerTurn = turn % players.size();
+		Player player = players.get(playerTurn); 
+		gui.playerAtTurn(player.getName()); // update gui
+		
+		
+		// 1.
+		player.addUnits(3);
+		
+		// 2.
+		
+		
+		
+		
+		turn++;
 	}
 	
 	private void setup(String[] names, Color[] colors, String mapDir) {
@@ -63,6 +97,8 @@ public class Game {
 		cards = initCards();
 		shuffleCards();
 		countries = initCountries();
+		
+		discardCards = new ArrayList<Card>();
 	}
 	
 	/**
@@ -168,7 +204,7 @@ public class Game {
 				gui.updateCountryLabels(countries);
 			}
 			
-			//discardCards.add(c);
+			discardCards.add(c);
 			
 			return true; 
 		}

@@ -99,6 +99,10 @@ public class GUI extends javax.swing.JWindow {
         layeredPane.add(countryPanel);
 
     }
+    
+    public void playerAtTurn(String playerName) {
+    	
+    }
 
     public PlayerLabel addPlayer(String name, Color color) {
         if (playerPanel.getComponents().length >= 6) {

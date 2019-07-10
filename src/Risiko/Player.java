@@ -23,6 +23,8 @@ public class Player {
 	/**  */
 	private List<Country> areas;
 	
+	private int unitCount;
+	
 	private PlayerLabel pLabel = null;
 	
 	public Player(String name, Color color) {
@@ -31,6 +33,8 @@ public class Player {
 		
 		cards = new ArrayList<Card>();
 		areas = new ArrayList<Country>();
+		
+		unitCount = 0;
 	}
 	
 	
@@ -54,6 +58,10 @@ public class Player {
 		}
 		updateLabel();
 		return false;
+	}
+	
+	public void addUnits(int numUnits) {
+		unitCount += numUnits;
 	}
 	
 	public void updateLabel() {
