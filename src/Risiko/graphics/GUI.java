@@ -32,7 +32,6 @@ public class GUI extends javax.swing.JWindow {
         countryLabels = new HashMap<String, JLabel>();
 
         initialize();
-        
         frame.setVisible(true);
     }
 
@@ -57,7 +56,8 @@ public class GUI extends javax.swing.JWindow {
         jmGame = new JMenu("Game");
         menuBar_1.add(jmGame);
         jmItemExit = new JMenuItem("Exit");
-        //jmItemExit.addActionListener(ev -> System.exit(0));
+        jmItemExit.addActionListener(ev -> System.exit(0));
+
         jmGame.add(jmItemExit);
         frame.getContentPane().setLayout(null);
 
@@ -112,15 +112,13 @@ public class GUI extends javax.swing.JWindow {
 
     public void addCountryLabels(String path) {
         Map<String, Dimension> locations = CountryLocationLoader.loadFrom(path);
-        
-        
-        for(String countryName: locations.keySet()){
-        	Dimension location = locations.get(countryName); 
-        	System.out.println("size " + countryName + ": " + location.width + "|" + location.height);
+
+        locations.forEach((String countryName, Dimension location) -> {
+            System.out.println("size " + countryName + ": " + location.width + "|" + location.height);
             countryLabels.put(countryName, addCountryLabel(location));
             System.out.println("in countryLabels: " + countryLabels.get(countryName).getLocation().getX() + "|" + countryLabels.get(countryName).getLocation().getY());
             System.out.println("on screen: " + countryLabels.get(countryName).getLocationOnScreen().getX() + "|" + countryLabels.get(countryName).getLocationOnScreen().getY() + "\n");
-        }
+        });
         
         layeredPane.revalidate();
         layeredPane.repaint();

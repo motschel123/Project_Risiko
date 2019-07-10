@@ -39,7 +39,6 @@ public class CardLoader {
                 attributes[i] = attributes[i].trim();
             }
             //name of the country
-            System.out.println("parsing Card: "+in);
             String countryIdentifier = attributes[0];
             //number of stars
             int stars = Integer.valueOf(attributes[1]);
