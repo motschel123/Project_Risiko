@@ -61,7 +61,7 @@ public class Game {
 		players = initPlayers(names, colors);
 		shufflePlayers();
 		cards = initCards();
-		//shuffleCards();
+		shuffleCards();
 		countries = initCountries();
 	}
 	
