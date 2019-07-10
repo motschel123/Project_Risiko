@@ -165,6 +165,7 @@ public class Game {
 			if(country.getOwner() == null || country.getOwner().getName() == p.getName()) {
 				country.setOwner(p);
 				country.setUnitPower(country.getUnitPower() + c.getStars());
+				gui.updateCountryLabels();
 			}
 			
 			//discardCards.add(c);
