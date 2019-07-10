@@ -153,6 +153,8 @@ public class Game {
 				return false;
 			}
 		}
+		
+		//updateCountryGUI();
 		return true;
 	}
 	

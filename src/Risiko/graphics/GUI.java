@@ -32,7 +32,6 @@ public class GUI extends javax.swing.JWindow {
         countryLabels = new HashMap<String, JLabel>();
 
         initialize();
-
         frame.setVisible(true);
     }
 
@@ -58,6 +57,7 @@ public class GUI extends javax.swing.JWindow {
         menuBar_1.add(jmGame);
         jmItemExit = new JMenuItem("Exit");
         jmItemExit.addActionListener(ev -> System.exit(0));
+
         jmGame.add(jmItemExit);
         frame.getContentPane().setLayout(null);
 
@@ -119,6 +119,9 @@ public class GUI extends javax.swing.JWindow {
             System.out.println("in countryLabels: " + countryLabels.get(countryName).getLocation().getX() + "|" + countryLabels.get(countryName).getLocation().getY());
             System.out.println("on screen: " + countryLabels.get(countryName).getLocationOnScreen().getX() + "|" + countryLabels.get(countryName).getLocationOnScreen().getY() + "\n");
         });
+        
+        layeredPane.revalidate();
+        layeredPane.repaint();
     }
 
     private CountryLabel addCountryLabel(Dimension pos) {
