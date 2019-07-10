@@ -131,6 +131,15 @@ public class GUI extends javax.swing.JWindow {
 
         return cLabel;
     }
+    
+    public void updateCountryLabels(Map<String, Country> countries) {
+        countryLabels.forEach((String cName, JLabel cLabel) -> {
+            Country country = countries.get(cName);
+            
+            cLabel.setText(country.getUnitPower() + "");
+            cLabel.setBackground(country.getOwner().getColor());
+        });
+    }
 
     public int getFrameExtendedState() {
         return frame.getExtendedState();
