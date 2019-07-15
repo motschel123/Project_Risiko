@@ -1,5 +1,6 @@
 package Risiko.graphics;
 
+import Risiko.Country;
 import Risiko.loading.CountryLocationLoader;
 
 import javax.swing.*;
@@ -56,7 +57,7 @@ public class GUI extends javax.swing.JWindow {
         jmGame = new JMenu("Game");
         menuBar_1.add(jmGame);
         jmItemExit = new JMenuItem("Exit");
-        jmItemExit.addActionListener(ev -> System.exit(0));
+        //jmItemExit.addActionListener(ev -> System.exit(0));
 
         jmGame.add(jmItemExit);
         frame.getContentPane().setLayout(null);
@@ -98,6 +99,10 @@ public class GUI extends javax.swing.JWindow {
         layeredPane.add(countryPanel);
 
     }
+    
+    public void playerAtTurn(String playerName) {
+    	
+    }
 
     public PlayerLabel addPlayer(String name, Color color) {
         if (playerPanel.getComponents().length >= 6) {
@@ -113,12 +118,14 @@ public class GUI extends javax.swing.JWindow {
     public void addCountryLabels(String path) {
         Map<String, Dimension> locations = CountryLocationLoader.loadFrom(path);
 
-        locations.forEach((String countryName, Dimension location) -> {
+        for(String countryName: locations.keySet()){
+        	Dimension location = locations.get(countryName);
+        	
             System.out.println("size " + countryName + ": " + location.width + "|" + location.height);
             countryLabels.put(countryName, addCountryLabel(location));
             System.out.println("in countryLabels: " + countryLabels.get(countryName).getLocation().getX() + "|" + countryLabels.get(countryName).getLocation().getY());
             System.out.println("on screen: " + countryLabels.get(countryName).getLocationOnScreen().getX() + "|" + countryLabels.get(countryName).getLocationOnScreen().getY() + "\n");
-        });
+        };
         
         layeredPane.revalidate();
         layeredPane.repaint();
@@ -133,12 +140,26 @@ public class GUI extends javax.swing.JWindow {
     }
     
     public void updateCountryLabels(Map<String, Country> countries) {
-        countryLabels.forEach((String cName, JLabel cLabel) -> {
+    	
+    	
+    	for(String cName: countryLabels.keySet()) {
+    		JLabel cLabel = countryLabels.get(cName);
+    		
+    		Country country = countries.get(cName);
+            
+            cLabel.setText(country.getUnitPower() + "");
+            
+            if(country.getOwner() != null) {
+            	cLabel.setBackground(country.getOwner().getColor());
+            }    		
+    	}
+    	
+        /*countryLabels.forEach((String cName, JLabel cLabel) -> {
             Country country = countries.get(cName);
             
             cLabel.setText(country.getUnitPower() + "");
             cLabel.setBackground(country.getOwner().getColor());
-        });
+        });*/
     }
 
     public int getFrameExtendedState() {
