@@ -28,7 +28,7 @@ class CSVLoader {
 
             Scanner scan = new Scanner(input);
             while (scan.hasNextLine()) {
-                lines.add(scan.nextLine());
+                lines.add(scan.nextLine().replaceAll("/", "_"));
             }
 
             return lines;
