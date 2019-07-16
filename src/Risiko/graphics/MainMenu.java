@@ -114,7 +114,6 @@ public class MainMenu extends javax.swing.JWindow{
 		
 		
 		textField1 = new JTextField();
-		textField1.setText("Enter player name");
 		GridBagConstraints gbc_txtEnterName = new GridBagConstraints();
 		gbc_txtEnterName.anchor = GridBagConstraints.WEST;
 		gbc_txtEnterName.insets = new Insets(0, 0, 5, 5);
@@ -122,9 +121,6 @@ public class MainMenu extends javax.swing.JWindow{
 		gbc_txtEnterName.gridy = 1;
 		mainPanel.add(textField1, gbc_txtEnterName);
 		textField1.setColumns(10);
-		textField1.setText("Enter player name");
-		textField1.setText("Enter player name");
-		textField1.setText("Enter player name");
 		
 		list1 = new JList<String>();
 		GridBagConstraints gbc_list = new GridBagConstraints();

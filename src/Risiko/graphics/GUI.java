@@ -85,6 +85,11 @@ public class GUI extends javax.swing.JWindow {
         layeredPane.setLayer(countryPanel, 1);
         layeredPane.add(countryPanel);
         
+        JPanel panel = new JPanel();
+        panel.setBackground(Color.MAGENTA);
+        panel.setBounds(820, 486, 374, 264);
+        layeredPane.add(panel);
+        
         
     }
 
