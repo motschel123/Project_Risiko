@@ -73,10 +73,10 @@ public class MainMenu extends javax.swing.JWindow{
 	
 	private void initColors() {
 		colorsToChoseFrom = new ArrayList<String>() {{
-			add("Magenta"); 
+			add("Red"); 
 			add("Blue");
-			add("Orange");
-			add("Black");
+			add("Gold");
+			add("Green");
 		}};
 	}
 
@@ -286,10 +286,10 @@ public class MainMenu extends javax.swing.JWindow{
 		}
 		
 		switch (c) {
-		case "Magenta": return Color.MAGENTA;
-		case "Blue": return Color.BLUE;
-		case "Black": return Color.BLACK;
-		case "Orange": return Color.ORANGE;
+		case "Blue": return Color.decode("#1e80db");
+		case "Green": return Color.decode("#326145");
+		case "Gold": return Color.decode("#be9616");
+		case "Red": return Color.decode("#981561");
 		default: return Color.WHITE;
 		}
 	}
