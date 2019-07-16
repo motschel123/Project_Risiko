@@ -11,7 +11,7 @@ public class CountryLabel extends JLabel{
 	public CountryLabel(Dimension bounds) {
 		super("0");
 		
-		setHorizontalTextPosition(JLabel.LEFT);
+		setHorizontalTextPosition(JLabel.CENTER);
 		setVerticalTextPosition(JLabel.TOP);
 		setFont(font);
 		setOpaque(false);
