@@ -6,7 +6,7 @@ import javax.swing.JLabel;
 
 public class CountryLabel extends JLabel{
 	
-	private Font font = new Font("Comic Sans MS", Font.BOLD, 20);
+	private Font font = new Font("Carlito", Font.BOLD, 20);
 
 	public CountryLabel(Dimension bounds) {
 		super("0");
