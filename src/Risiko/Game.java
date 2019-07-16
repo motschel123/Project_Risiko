@@ -89,6 +89,8 @@ public class Game {
 	
 	public void attackPhase() {
 		System.out.println("AttackPhase");
+		
+		gui.setPhase("Attackphase");
 	}
 	
 	public Country getCountryByName(String name) {

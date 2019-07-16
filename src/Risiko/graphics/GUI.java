@@ -226,6 +226,10 @@ public class GUI extends javax.swing.JWindow {
 		}
 	}
 	
+	public void setPhase(String phase) {
+		phasenLabel.setText(phase);
+	}
+	
 	public void loadDisplayCards(String path) {
 		
 		cardButton = new JButton();
