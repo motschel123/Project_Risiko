@@ -134,6 +134,11 @@ public class GUI extends javax.swing.JWindow {
     	for(String cName: countryLabels.keySet()) {
     		JLabel cLabel = countryLabels.get(cName);
     		
+    		countries.forEach((String name, Country c) -> {
+    			System.out.println(name + " | " + c.getName());
+    		});
+    		System.out.println(cName);
+    		 
     		Country country = countries.get(cName);
             
             cLabel.setText(country.getUnitPower() + "");
