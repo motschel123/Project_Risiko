@@ -22,4 +22,8 @@ public class CountryLabel extends JLabel{
 		setBounds(bounds.width, bounds.height, 15, 25);
 		
 	}
+
+	public Country getCountry() {
+		return country;
+	}
 }
