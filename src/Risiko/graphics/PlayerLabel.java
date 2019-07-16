@@ -38,12 +38,6 @@ public class PlayerLabel extends JLabel {
 	
 	public void updateText() {
 		List<String> strings = new LinkedList<String>();
-		
-		/*if(isTurn) {
-			strings.add("X");
-		} else {
-			strings.add("O");
-		}*/
 		strings.add(name);
 		strings.add("|");
 		strings.add(String.valueOf(numberOfAreas + " Gebiete"));
@@ -54,5 +48,6 @@ public class PlayerLabel extends JLabel {
 	
 	public void setAreasCounter(int areas) {
 		numberOfAreas = areas;
+		updateText();
 	}
 }
