@@ -15,6 +15,7 @@ public class Game {
 	private final String mapDir;
 	
 	private GUI gui;
+	private Controller controller;
 	
 	
 	private int turn = 0;
@@ -32,6 +33,7 @@ public class Game {
 		
 		// Load up GUI
 		gui = new GUI();
+		controller = new Controller();
 		
 		gui.addCountryLabels(mapDir);
 		
@@ -53,14 +55,11 @@ public class Game {
 	private void startGame() {
 		handoutCards();
 		
-		if(!placeArmy()) {
-			System.err.println("Handout card error");
-			return;
+		if(!placeArmy()) System.err.println("Handout card error");
+		else {
+			cards = discardCards;
+			nextTurn();
 		}
-		
-		cards = discardCards;
-		
-		nextTurn();
 	}
 	
 	private void nextTurn() {
