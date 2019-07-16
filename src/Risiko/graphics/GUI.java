@@ -52,6 +52,7 @@ public class GUI extends javax.swing.JWindow implements ActionListener {
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Risiko");
+        frame.addActionListener(this);
 
 
         // init the menu bar on the top to display control options
