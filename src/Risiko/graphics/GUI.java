@@ -1,6 +1,7 @@
 package Risiko.graphics;
 
 import Risiko.Country;
+import Risiko.Game;
 import Risiko.Player;
 import Risiko.loading.CountryLocationLoader;
 
@@ -8,10 +9,14 @@ import javax.swing.*;
 import javax.swing.border.Border;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 
 public class GUI extends javax.swing.JWindow {
@@ -31,16 +36,32 @@ public class GUI extends javax.swing.JWindow {
 	private JPanel phasenPanel;
 	
 	private JButton unit1Button, unit2Button, unit3Button;
+	
+	JLabel labelGebietWaehlen;
+	
+	private Player playerTurn;
+	
+	private int unitPlaced = 0;
+	private boolean unitPlacable = false;
 
-	public Map<String, JLabel> countryLabels;
+	public Map<String, CountryLabel> countryLabels;
 	public Map<String, PlayerLabel> playerLabels;
+	private Map<String, JButton> cardButtons;
+
+	private JButton cardButton;
+	
+	private Game game;
+	
+	private int unitsPlaced = 0;
 
 	/**
 	 * Create the application.
 	 */
-	public GUI() {
-		countryLabels = new HashMap<String, JLabel>();
+	public GUI(Game game) {
+		this.game = game;
+		countryLabels = new HashMap<String, CountryLabel>();
 		playerLabels = new HashMap<String, PlayerLabel>();
+		cardButtons = new HashMap<String, JButton>();
 		
 		initialize();
 		frame.setVisible(true);
@@ -98,25 +119,21 @@ public class GUI extends javax.swing.JWindow {
 
 		controllPanel = new JPanel();
 		controllPanel.setOpaque(false);
-		controllPanel.setBounds(820, 486, 570, 253);
+		controllPanel.setBounds(820, 486, 570, 374);
 		layeredPane.add(controllPanel);
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[]{0, 0, 0, 0};
-		gbl_panel.rowHeights = new int[]{0, 0};
+		gbl_panel.rowHeights = new int[]{0, 0, 0, 0};
 		gbl_panel.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
 		controllPanel.setLayout(gbl_panel);
 		
 		unit1Button = new JButton("Unit 1");
 		unit1Button.setForeground(Color.WHITE);
 		unit1Button.setVisible(false);
 		unit1Button.setEnabled(false);
-		unit1Button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
 		GridBagConstraints gbc_unit1 = new GridBagConstraints();
-		gbc_unit1.insets = new Insets(0, 0, 0, 5);
+		gbc_unit1.insets = new Insets(0, 0, 5, 5);
 		gbc_unit1.gridx = 0;
 		gbc_unit1.gridy = 0;
 		controllPanel.add(unit1Button, gbc_unit1);
@@ -125,12 +142,8 @@ public class GUI extends javax.swing.JWindow {
 		unit2Button.setForeground(Color.WHITE);
 		unit2Button.setVisible(false);
 		unit2Button.setEnabled(false);
-		unit2Button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		GridBagConstraints gbc_unit2 = new GridBagConstraints();
-		gbc_unit2.insets = new Insets(0, 0, 0, 5);
+		gbc_unit2.insets = new Insets(0, 0, 5, 5);
 		gbc_unit2.gridx = 1;
 		gbc_unit2.gridy = 0;
 		controllPanel.add(unit2Button, gbc_unit2);
@@ -140,9 +153,18 @@ public class GUI extends javax.swing.JWindow {
 		unit3Button.setVisible(false);
 		unit3Button.setEnabled(false);
 		GridBagConstraints gbc_unit3 = new GridBagConstraints();
+		gbc_unit3.insets = new Insets(0, 0, 5, 0);
 		gbc_unit3.gridx = 2;
 		gbc_unit3.gridy = 0;
 		controllPanel.add(unit3Button, gbc_unit3);
+		
+		labelGebietWaehlen = new JLabel("W\u00E4hle ein Gebiet");
+		GridBagConstraints gbc_lblWhleEinGebiet = new GridBagConstraints();
+		gbc_lblWhleEinGebiet.gridheight = 2;
+		gbc_lblWhleEinGebiet.gridwidth = 3;
+		gbc_lblWhleEinGebiet.gridx = 0;
+		gbc_lblWhleEinGebiet.gridy = 1;
+		controllPanel.add(labelGebietWaehlen, gbc_lblWhleEinGebiet);
 		
 		phasenPanel = new JPanel();
 		phasenPanel.setBackground(Color.CYAN);
@@ -155,8 +177,30 @@ public class GUI extends javax.swing.JWindow {
 		phasenPanel.add(phasenLabel);
 
 	}
-	
+
 	public void setTurn(Player player) {
+		playerTurn = player;
+		unit1Button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				unitPlaced = 1;
+				labelGebietWaehlen.setVisible(true);
+				unitPlacable = true;
+			}
+		});
+		unit2Button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				unitPlaced = 2;
+				labelGebietWaehlen.setVisible(true);
+				unitPlacable = true;
+			}
+		});
+		unit3Button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				unitPlaced = 3;
+				labelGebietWaehlen.setVisible(true);
+				unitPlacable = true;
+			}
+		});
 		unit1Button.setEnabled(true); unit1Button.setVisible(true); unit1Button.setBackground(player.getColor());
 		unit2Button.setEnabled(true); unit2Button.setVisible(true); unit2Button.setBackground(player.getColor());
 		unit3Button.setEnabled(true); unit3Button.setVisible(true); unit3Button.setBackground(player.getColor());
@@ -171,6 +215,27 @@ public class GUI extends javax.swing.JWindow {
 			}
 		});
 		
+		
+		
+		//loadDisplayCards("Assets");
+	}
+	
+	public void checkNextStage() {
+		if(unitsPlaced == 3) {
+			game.attackPhase();
+		}
+	}
+	
+	public void loadDisplayCards(String path) {
+		
+		cardButton = new JButton();
+		String name = "test";
+		GridBagConstraints gbc_cardLabel = new GridBagConstraints();
+		gbc_cardLabel.insets = new Insets(0, 0, 0, 5);
+		gbc_cardLabel.gridx = 0;
+		gbc_cardLabel.gridy = 1;
+		controllPanel.add(cardButton, gbc_cardLabel);
+		cardButtons.put(name ,cardButton);
 	}
 
 	public PlayerLabel addPlayer(String name, Color color) {
@@ -193,21 +258,38 @@ public class GUI extends javax.swing.JWindow {
 			Dimension location = locations.get(countryName);
 
 			System.out.println("size " + countryName + ": " + location.width + "|" + location.height);
-			countryLabels.put(countryName, addCountryLabel(location));
+			countryLabels.put(countryName, addCountryLabel(location, countryName));
 			System.out.println("in countryLabels: " + countryLabels.get(countryName).getLocation().getX() + "|"
 					+ countryLabels.get(countryName).getLocation().getY());
 			System.out.println("on screen: " + countryLabels.get(countryName).getLocationOnScreen().getX() + "|"
 					+ countryLabels.get(countryName).getLocationOnScreen().getY() + "\n");
-		}
-		;
+		};
 
 		layeredPane.revalidate();
 		layeredPane.repaint();
 	}
 
-	private CountryLabel addCountryLabel(Dimension pos) {
-		CountryLabel cLabel = new CountryLabel(pos);
+	private CountryLabel addCountryLabel(Dimension pos, String countryName) {
+		CountryLabel cLabel = new CountryLabel(pos, game.getCountryByName(countryName));
 
+		cLabel.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				if(unitPlacable && cLabel.getCountry().getOwner() == playerTurn) {
+					Country c = game.getCountryByName(countryName);
+					c.setUnitPower(c.getUnitPower()+1);
+					updateCountryLabels(game.getCountries());
+					switch(unitPlaced) {
+					case 1: unit1Button.setEnabled(false); unitPlacable=false; break;
+					case 2: unit2Button.setEnabled(false); unitPlacable=false; break;
+					case 3: unit3Button.setEnabled(false); unitPlacable=false; break;
+					default: unit1Button.setEnabled(false); unitPlacable=false; break;
+					}
+					unitsPlaced++;
+					checkNextStage();
+				}
+			}
+		});
+		
 		countryPanel.add(cLabel);
 
 		return cLabel;
@@ -216,7 +298,7 @@ public class GUI extends javax.swing.JWindow {
 	public void updateCountryLabels(Map<String, Country> countries) {
 
 		for (String cName : countryLabels.keySet()) {
-			JLabel cLabel = countryLabels.get(cName);
+			CountryLabel cLabel = countryLabels.get(cName);
 
 			countries.forEach((String name, Country c) -> {
 				System.out.println(name + " | " + c.getName());

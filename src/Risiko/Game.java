@@ -31,7 +31,7 @@ public class Game {
 		
 		
 		// Load up GUI
-		gui = new GUI();
+		gui = new GUI(this);
 		
 		gui.addCountryLabels(mapDir);
 		
@@ -82,13 +82,17 @@ public class Game {
 		// 1.
 		player.addUnits(3);
 		
-		// 2.
-		
-		
-		
 		
 		
 		turn++;
+	}
+	
+	public void attackPhase() {
+		System.out.println("AttackPhase");
+	}
+	
+	public Country getCountryByName(String name) {
+		return countries.get(name);
 	}
 	
 	private void setup(String[] names, Color[] colors, String mapDir) {
