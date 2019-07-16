@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class GUI extends javax.swing.JWindow {
+public class GUI extends javax.swing.JWindow implements ActionListener {
 
     private int playerCount;
 
@@ -23,15 +23,18 @@ public class GUI extends javax.swing.JWindow {
     private JLabel backgroundLabel;
     private JPanel playerPanel;
     private JPanel countryPanel;
+    
+    private Controller controller;
 
     public Map<String, JLabel> countryLabels;
 
     /**
      * Create the application.
      */
-    public GUI() {
+    public GUI(ActionListener al) {
         countryLabels = new HashMap<String, JLabel>();
-
+        controller = al;
+        
         initialize();
         frame.setVisible(true);
     }
@@ -161,6 +164,11 @@ public class GUI extends javax.swing.JWindow {
             cLabel.setBackground(country.getOwner().getColor());
         });*/
     }
+    
+    /** Forwards events to controller. */
+    public void getActionCommand(ActionEvent ae) {
+        controller.getActionCommand(ae);
+    } 
 
     public int getFrameExtendedState() {
         return frame.getExtendedState();
