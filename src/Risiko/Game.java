@@ -77,7 +77,7 @@ public class Game {
 		int playerTurn = turn % players.size();
 		Player player = players.get(playerTurn); 
 		
-		player.setTurn(true);
+		gui.setTurn(player);
 		
 		// 1.
 		player.addUnits(3);
