@@ -15,10 +15,6 @@ public class GUI extends javax.swing.JWindow {
 
     private JFrame frame;
 
-    private JMenuBar menuBar_1;
-    private JMenu jmGame;
-    private JMenuItem jmItemExit;
-
     private JLayeredPane layeredPane;
     private JLabel backgroundLabel;
     private JPanel playerPanel;
@@ -49,17 +45,6 @@ public class GUI extends javax.swing.JWindow {
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Risiko");
-
-
-        // init the menu bar on the top to display control options
-        menuBar_1 = new JMenuBar();
-        frame.setJMenuBar(menuBar_1);
-        jmGame = new JMenu("Game");
-        menuBar_1.add(jmGame);
-        jmItemExit = new JMenuItem("Exit");
-        //jmItemExit.addActionListener(ev -> System.exit(0));
-
-        jmGame.add(jmItemExit);
         frame.getContentPane().setLayout(null);
 
         // init the layered pane to hold multiple other components ordered
@@ -84,9 +69,9 @@ public class GUI extends javax.swing.JWindow {
         // init the background
 
         playerPanel = new JPanel();
-        playerPanel.setBackground(Color.LIGHT_GRAY);
+        playerPanel.setBackground(Color.DARK_GRAY);
         playerPanel.setBounds(820, 11, 364, 464);
-        playerPanel.setLayout(new GridLayout(0, 1, 6, 5));
+        playerPanel.setLayout(new GridLayout(0, 1, 6, 15));
         layeredPane.add(playerPanel);
         layeredPane.setLayer(playerPanel, 1);
 

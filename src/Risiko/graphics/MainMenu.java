@@ -221,6 +221,7 @@ public class MainMenu extends javax.swing.JWindow{
 				if(names == null || colors == null) {
 					startButton.setBackground(new Color(255, 0, 10));
 				} else {
+					frame.setVisible(false);
 					new Game(names, colors, "StandardMap");
 				}
 			}
@@ -257,15 +258,24 @@ public class MainMenu extends javax.swing.JWindow{
 	
 	private Color[] checkGetColors() {
 		Color[] colors = new Color[4];
+		int black = 1, magenta = 1, blue = 1, orange = 1;
 		
 		colors[0] = getColorByString(list1.getSelectedValue());
 		colors[1] = getColorByString(list2.getSelectedValue());
 		colors[2] = getColorByString(list3.getSelectedValue());
 		colors[3] = getColorByString(list4.getSelectedValue());
 		
-		for(Color c: colors) {
-			if(c == null) {
+		for(int i=0; i<colors.length; i++) {
+			if(colors[i] == null) {
 				return null;
+			}
+			
+			for(int j=0; j<colors.length; j++) {
+				if(i!=j) {
+					if(colors[i] == colors[j]) {
+						return null;
+					}
+				}
 			}
 		}
 		
