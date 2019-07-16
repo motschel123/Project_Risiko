@@ -97,7 +97,8 @@ public class GUI extends javax.swing.JWindow {
         countryPanel.setLayout(null);
         layeredPane.setLayer(countryPanel, 1);
         layeredPane.add(countryPanel);
-
+        
+        
     }
     
     public void playerAtTurn(String playerName) {
