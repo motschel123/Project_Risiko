@@ -52,16 +52,6 @@ public class PlayerLabel extends JLabel {
 		repaint();
 	}
 	
-	public void displayTurn(boolean turn) {
-		if(!turn) {
-			Border border = BorderFactory.createEmptyBorder();
-			setBorder(border);
-		} else {
-			Border border = BorderFactory.createLineBorder(new Color(255, 0, 0), 4);
-			setBorder(border);
-		}
-	}
-	
 	public void setAreasCounter(int areas) {
 		numberOfAreas = areas;
 	}
