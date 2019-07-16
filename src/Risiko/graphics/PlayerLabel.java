@@ -24,7 +24,7 @@ public class PlayerLabel extends JLabel {
 		this.color = color;
 		setHorizontalTextPosition(JLabel.CENTER);
 		setBackground(color);
-		setFont(new Font("Serif", Font.PLAIN, 30));
+		setFont(new Font("Carlito", Font.PLAIN, 30));
 		setForeground(Color.WHITE);
 		setOpaque(true);
 
