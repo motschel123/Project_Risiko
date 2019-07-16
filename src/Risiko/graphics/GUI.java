@@ -4,6 +4,8 @@ import Risiko.Country;
 import Risiko.loading.CountryLocationLoader;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+
 import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -85,10 +87,6 @@ public class GUI extends javax.swing.JWindow {
         
         
     }
-    
-    public void playerAtTurn(String playerName) {
-    	
-    }
 
     public PlayerLabel addPlayer(String name, Color color) {
         if (playerPanel.getComponents().length >= 6) {
@@ -97,7 +95,7 @@ public class GUI extends javax.swing.JWindow {
         PlayerLabel playerLabel = new PlayerLabel(name, color);
 
         playerPanel.add(playerLabel, -1);
-
+        
         return playerLabel;
     }
 

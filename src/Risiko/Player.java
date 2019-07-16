@@ -24,6 +24,7 @@ public class Player {
 	private List<Country> areas;
 	
 	private int unitCount;
+	private boolean isTurn = false;
 	
 	private PlayerLabel pLabel = null;
 	
@@ -64,8 +65,14 @@ public class Player {
 		unitCount += numUnits;
 	}
 	
+	public void setTurn(boolean turn) {
+		isTurn = turn;
+		updateLabel();
+	}
+	
 	public void updateLabel() {
-		pLabel.setCardCounter(cards.size());
+		pLabel.displayTurn(isTurn);
+		pLabel.setAreasCounter(areas.size());
 	}
 	
 	public void addLabel(PlayerLabel label) {

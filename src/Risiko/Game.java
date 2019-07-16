@@ -76,8 +76,8 @@ public class Game {
 		// calc player who's at turn
 		int playerTurn = turn % players.size();
 		Player player = players.get(playerTurn); 
-		gui.playerAtTurn(player.getName()); // update gui
 		
+		player.setTurn(true);
 		
 		// 1.
 		player.addUnits(3);

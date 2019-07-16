@@ -4,17 +4,19 @@ import java.awt.*;
 import java.util.*;
 import java.util.List;
 
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import javax.swing.border.Border;
 
 public class PlayerLabel extends JLabel {
 	
 	boolean isTurn;
 	int numberOfCards = 0;
+	int numberOfAreas = 0;
 	
 	String name;
 	Color color;
-	JLabel lol; 
 
 	public PlayerLabel(String name, Color color) {
 		super(name, SwingConstants.CENTER);
@@ -43,9 +45,24 @@ public class PlayerLabel extends JLabel {
 			strings.add("O");
 		}*/
 		strings.add(name);
-		//strings.add("|");
-		//strings.add(String.valueOf(numberOfCards + " Karten"));
+		strings.add("|");
+		strings.add(String.valueOf(numberOfAreas + " Gebiete"));
 
 		setText(String.join(" ", strings));
+		repaint();
+	}
+	
+	public void displayTurn(boolean turn) {
+		if(!turn) {
+			Border border = BorderFactory.createEmptyBorder();
+			setBorder(border);
+		} else {
+			Border border = BorderFactory.createLineBorder(new Color(255, 0, 0), 4);
+			setBorder(border);
+		}
+	}
+	
+	public void setAreasCounter(int areas) {
+		numberOfAreas = areas;
 	}
 }
