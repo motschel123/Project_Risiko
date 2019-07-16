@@ -42,7 +42,7 @@ public class GUI extends javax.swing.JWindow {
     private void initialize() {
         // init the basic frame holding everything
         frame = new JFrame();
-        frame.getContentPane().setBackground(Color.LIGHT_GRAY);
+        frame.getContentPane().setBackground(Color.DARK_GRAY);
         //frame.setUndecorated(true);  // fullscreen
         frame.setBounds(100, 100, 1200, 800);
         frame.setResizable(true);
@@ -134,7 +134,7 @@ public class GUI extends javax.swing.JWindow {
 
     private CountryLabel addCountryLabel(Dimension pos) {
         CountryLabel cLabel = new CountryLabel(pos);
-
+        
         countryPanel.add(cLabel);
 
         return cLabel;
@@ -151,7 +151,7 @@ public class GUI extends javax.swing.JWindow {
             cLabel.setText(country.getUnitPower() + "");
             
             if(country.getOwner() != null) {
-            	cLabel.setBackground(country.getOwner().getColor());
+            	cLabel.setForeground(country.getOwner().getColor());
             }    		
     	}
     	

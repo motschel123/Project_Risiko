@@ -5,6 +5,7 @@ import java.util.*;
 import java.util.List;
 
 import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 public class PlayerLabel extends JLabel {
 	
@@ -13,14 +14,16 @@ public class PlayerLabel extends JLabel {
 	
 	String name;
 	Color color;
-	
+	JLabel lol; 
+
 	public PlayerLabel(String name, Color color) {
-		super();
+		super(name, SwingConstants.CENTER);
 		this.name = name;
 		this.color = color;
 		setHorizontalTextPosition(JLabel.CENTER);
 		setBackground(color);
 		setFont(new Font("Serif", Font.PLAIN, 30));
+		setForeground(Color.WHITE);
 		setOpaque(true);
 
 		updateText();
@@ -34,14 +37,14 @@ public class PlayerLabel extends JLabel {
 	public void updateText() {
 		List<String> strings = new LinkedList<String>();
 		
-		if(isTurn) {
+		/*if(isTurn) {
 			strings.add("X");
 		} else {
 			strings.add("O");
-		}
+		}*/
 		strings.add(name);
-		strings.add("|");
-		strings.add(String.valueOf(numberOfCards + " Karten"));
+		//strings.add("|");
+		//strings.add(String.valueOf(numberOfCards + " Karten"));
 
 		setText(String.join(" ", strings));
 	}

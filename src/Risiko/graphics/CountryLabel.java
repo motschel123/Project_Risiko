@@ -11,11 +11,10 @@ public class CountryLabel extends JLabel{
 	public CountryLabel(Dimension bounds) {
 		super("0");
 		
-		setText("0");
 		setHorizontalTextPosition(JLabel.LEFT);
 		setVerticalTextPosition(JLabel.TOP);
 		setFont(font);
-		setOpaque(true);
+		setOpaque(false);
 		setBounds(bounds.width, bounds.height, 15, 25);
 		
 	}
