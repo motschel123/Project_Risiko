@@ -37,8 +37,6 @@ public class GUI extends javax.swing.JWindow {
 	
 	private JButton unit1Button, unit2Button, unit3Button;
 	
-	JLabel labelGebietWaehlen;
-	
 	private Player playerTurn;
 	
 	private int unitPlaced = 0;
@@ -50,10 +48,14 @@ public class GUI extends javax.swing.JWindow {
 
 	private JButton cardButton;
 	
+	public boolean selectingAC = false;
+	
 	private Game game;
 	
 	private int unitsPlaced = 0;
-
+	private JPanel unitPanel;
+	private JPanel panel;
+	private JButton endAttackPhaseButton;
 	/**
 	 * Create the application.
 	 */
@@ -121,50 +123,71 @@ public class GUI extends javax.swing.JWindow {
 		controllPanel.setOpaque(false);
 		controllPanel.setBounds(820, 486, 570, 374);
 		layeredPane.add(controllPanel);
-		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[]{0, 0, 0, 0};
-		gbl_panel.rowHeights = new int[]{0, 0, 0, 0};
-		gbl_panel.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
-		controllPanel.setLayout(gbl_panel);
+		controllPanel.setLayout(null);
+		
+		unitPanel = new JPanel();
+		unitPanel.setOpaque(false);
+		unitPanel.setBounds(0, 0, 248, 86);
+		controllPanel.add(unitPanel);
+		GridBagLayout gbl_unitPanel = new GridBagLayout();
+		gbl_unitPanel.columnWidths = new int[]{0, 0, 0, 0};
+		gbl_unitPanel.rowHeights = new int[]{0, 0, 0};
+		gbl_unitPanel.columnWeights = new double[]{1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gbl_unitPanel.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+		unitPanel.setLayout(gbl_unitPanel);
 		
 		unit1Button = new JButton("Unit 1");
+		GridBagConstraints gbc_unit1Button = new GridBagConstraints();
+		gbc_unit1Button.fill = GridBagConstraints.HORIZONTAL;
+		gbc_unit1Button.insets = new Insets(0, 0, 5, 5);
+		gbc_unit1Button.gridx = 0;
+		gbc_unit1Button.gridy = 0;
+		unitPanel.add(unit1Button, gbc_unit1Button);
 		unit1Button.setForeground(Color.WHITE);
 		unit1Button.setVisible(false);
 		unit1Button.setEnabled(false);
-		GridBagConstraints gbc_unit1 = new GridBagConstraints();
-		gbc_unit1.insets = new Insets(0, 0, 5, 5);
-		gbc_unit1.gridx = 0;
-		gbc_unit1.gridy = 0;
-		controllPanel.add(unit1Button, gbc_unit1);
 		
 		unit2Button = new JButton("Unit 2");
+		GridBagConstraints gbc_unit2Button = new GridBagConstraints();
+		gbc_unit2Button.fill = GridBagConstraints.HORIZONTAL;
+		gbc_unit2Button.insets = new Insets(0, 0, 5, 5);
+		gbc_unit2Button.gridx = 1;
+		gbc_unit2Button.gridy = 0;
+		unitPanel.add(unit2Button, gbc_unit2Button);
 		unit2Button.setForeground(Color.WHITE);
 		unit2Button.setVisible(false);
 		unit2Button.setEnabled(false);
-		GridBagConstraints gbc_unit2 = new GridBagConstraints();
-		gbc_unit2.insets = new Insets(0, 0, 5, 5);
-		gbc_unit2.gridx = 1;
-		gbc_unit2.gridy = 0;
-		controllPanel.add(unit2Button, gbc_unit2);
 		
 		unit3Button = new JButton("Unit 3");
+		GridBagConstraints gbc_unit3Button = new GridBagConstraints();
+		gbc_unit3Button.fill = GridBagConstraints.HORIZONTAL;
+		gbc_unit3Button.insets = new Insets(0, 0, 5, 0);
+		gbc_unit3Button.gridx = 2;
+		gbc_unit3Button.gridy = 0;
+		unitPanel.add(unit3Button, gbc_unit3Button);
 		unit3Button.setForeground(Color.WHITE);
 		unit3Button.setVisible(false);
 		unit3Button.setEnabled(false);
-		GridBagConstraints gbc_unit3 = new GridBagConstraints();
-		gbc_unit3.insets = new Insets(0, 0, 5, 0);
-		gbc_unit3.gridx = 2;
-		gbc_unit3.gridy = 0;
-		controllPanel.add(unit3Button, gbc_unit3);
 		
-		labelGebietWaehlen = new JLabel("W\u00E4hle ein Gebiet");
-		GridBagConstraints gbc_lblWhleEinGebiet = new GridBagConstraints();
-		gbc_lblWhleEinGebiet.gridheight = 2;
-		gbc_lblWhleEinGebiet.gridwidth = 3;
-		gbc_lblWhleEinGebiet.gridx = 0;
-		gbc_lblWhleEinGebiet.gridy = 1;
-		controllPanel.add(labelGebietWaehlen, gbc_lblWhleEinGebiet);
+		panel = new JPanel();
+		panel.setOpaque(false);
+		panel.setBounds(244, 128, 326, 246);
+		controllPanel.add(panel);
+		panel.setLayout(null);
+		
+		endAttackPhaseButton = new JButton("End Attack Phase");
+		endAttackPhaseButton.setEnabled(false);
+		endAttackPhaseButton.setVisible(false);
+		endAttackPhaseButton.setBounds(199, 212, 117, 23);
+		endAttackPhaseButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				game.movePhase();
+			}
+			
+		});
+		panel.add(endAttackPhaseButton);
 		
 		phasenPanel = new JPanel();
 		phasenPanel.setBackground(Color.CYAN);
@@ -177,27 +200,33 @@ public class GUI extends javax.swing.JWindow {
 		phasenPanel.add(phasenLabel);
 
 	}
+	
+	public void setPlacingPhase() {
+		
+	}
+	
+	public void setAttackingPhase() {
+		endAttackPhaseButton.setVisible(true);
+		endAttackPhaseButton.setEnabled(true);
+	}
 
 	public void setTurn(Player player) {
 		playerTurn = player;
 		unit1Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				unitPlaced = 1;
-				labelGebietWaehlen.setVisible(true);
 				unitPlacable = true;
 			}
 		});
 		unit2Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				unitPlaced = 2;
-				labelGebietWaehlen.setVisible(true);
 				unitPlacable = true;
 			}
 		});
 		unit3Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				unitPlaced = 3;
-				labelGebietWaehlen.setVisible(true);
 				unitPlacable = true;
 			}
 		});
@@ -278,18 +307,41 @@ public class GUI extends javax.swing.JWindow {
 
 		cLabel.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				if(unitPlacable && cLabel.getCountry().getOwner() == playerTurn) {
-					Country c = game.getCountryByName(countryName);
-					c.setUnitPower(c.getUnitPower()+1);
-					updateCountryLabels(game.getCountries());
-					switch(unitPlaced) {
-					case 1: unit1Button.setEnabled(false); unitPlacable=false; break;
-					case 2: unit2Button.setEnabled(false); unitPlacable=false; break;
-					case 3: unit3Button.setEnabled(false); unitPlacable=false; break;
-					default: unit1Button.setEnabled(false); unitPlacable=false; break;
+				switch(game.getPhase()) {
+				case 1:
+					if(unitPlacable && cLabel.getCountry().getOwner() == playerTurn) {
+						Country c = game.getCountryByName(countryName);
+						c.setUnitPower(c.getUnitPower()+1);
+						updateCountryLabels(game.getCountries());
+						switch(unitPlaced) {
+						case 1: unit1Button.setEnabled(false); unitPlacable=false; break;
+						case 2: unit2Button.setEnabled(false); unitPlacable=false; break;
+						case 3: unit3Button.setEnabled(false); unitPlacable=false; break;
+						default: unit1Button.setEnabled(false); unitPlacable=false; break;
+						}
+						unitsPlaced++;
+						checkNextStage();
 					}
-					unitsPlaced++;
-					checkNextStage();
+					break;
+				case 2: 
+					if(selectingAC && cLabel.getCountry().getOwner() == playerTurn && cLabel.getCountry().getUnitPower() > 0) {
+						if(game.getAttackingCountry() != null) {
+							countryLabels.get(game.getAttackingCountry().getName()).setForeground(playerTurn.getColor());
+						}
+						game.setAttackingCountry(cLabel.getCountry());
+						cLabel.setForeground(new Color(255,0,0));
+					} else if(selectingAC && game.getAttackingCountry() != null && cLabel.getCountry().getOwner() != playerTurn) 
+						for(String c: game.getAttackingCountry().getBorders()) {
+							if(c.replaceAll("/", "_").replaceAll(" ", "").equalsIgnoreCase(cLabel.getCountry().getName().replaceAll("/", "_").replaceAll(" ", ""))) {
+								game.attackedCountry = cLabel.getCountry();
+								selectingAC = false;
+								game.attack();
+								selectingAC = true;
+						}
+					}
+					break;
+				case 3: 
+					break;
 				}
 			}
 		});

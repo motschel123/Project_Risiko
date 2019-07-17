@@ -19,6 +19,11 @@ public class Game {
 	
 	private int turn = 0;
 	
+	private int phase = 0;
+	
+	private Country attackingCountry = null;
+	public Country attackedCountry = null;
+	
 	/**
 	 * 
 	 * @param names Array containing the player names
@@ -78,10 +83,11 @@ public class Game {
 		Player player = players.get(playerTurn); 
 		
 		gui.setTurn(player);
-		
+		gui.setPlacingPhase();
+		gui.setPhase("Placing-Phase");
+		phase = 1;
 		// 1.
 		player.addUnits(3);
-		
 		
 		
 		turn++;
@@ -89,8 +95,62 @@ public class Game {
 	
 	public void attackPhase() {
 		System.out.println("AttackPhase");
+		phase = 2;
+		gui.selectingAC = true;
+		gui.setAttackingPhase();
+		gui.setPhase("Attacking-Phase");
+	}
+	
+	
+	public void attack() {
+		if(attackingCountry != null && attackedCountry != null) {
+			for(String countryName: attackingCountry.getBorders()) {
+				if(countryName.equalsIgnoreCase(attackedCountry.getName())) {
+					System.out.println("yeet");
+					if(attackSuccessful()) {
+						System.out.println("succ");
+						attackedCountry.setUnitPower(attackedCountry.getUnitPower() - 1);
+						gui.countryLabels.get(countryName).update();
+						if(attackedCountry.getUnitPower() <= 0) {
+							attackedCountry.setOwner(attackingCountry.getOwner());
+							attackedCountry.setUnitPower(1);
+							gui.countryLabels.get(countryName).update();
+							gui.countryLabels.get(countryName).setForeground(attackingCountry.getOwner().getColor());
+						}
+					} else {
+						System.out.println("sitt");
+						gui.countryLabels.get(countryName).update();
+						attackingCountry.setUnitPower(attackingCountry.getUnitPower() - 1);
+						gui.countryLabels.get(attackingCountry.getName()).update();
+						if(attackingCountry.getUnitPower() <= 0 || attackingCountry.getUnitPower() == 0) {
+							attackingCountry.setOwner(attackedCountry.getOwner());
+							attackingCountry.setUnitPower(1);
+							gui.countryLabels.get(attackingCountry.getName()).update();
+							movePhase();
+						}
+					}
+					gui.countryLabels.get(attackingCountry.getName()).update();
+					gui.countryLabels.get(attackingCountry.getName()).setForeground(attackingCountry.getOwner().getColor());
+					attackingCountry=null;
+					gui.selectingAC = true;
+					gui.setPhase("Attackphase");
+					
+				}
+			}
+		}
+	}
+	
+	private boolean attackSuccessful() {
+		if(Math.random() > 0.5) {
+			return true;
+		} 
+		return false;
+	}
+	
+	public void movePhase() {
+		System.out.println("MovePhase");
 		
-		gui.setPhase("Attackphase");
+		gui.setPhase("Move phase");
 	}
 	
 	public Country getCountryByName(String name) {
@@ -219,6 +279,14 @@ public class Game {
 		
 		return false;
 	}
+	
+	public void setAttackingCountry(Country c) {
+		attackingCountry = c;
+	}
+	
+	public Country getAttackingCountry() {
+		return attackingCountry;
+	}
 
 	public ArrayList<Player> getPlayers() {
 		return players;
@@ -242,5 +310,9 @@ public class Game {
 
 	public GUI getGui() {
 		return gui;
+	}
+	
+	public int getPhase() {
+		return phase;
 	}
 }
