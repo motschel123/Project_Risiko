@@ -75,7 +75,6 @@ public class Game {
 		 * 4. draw cards if allowed to
 		 */
 		
-		System.out.println(cards.size());
 		// calc player who's at turn
 		int playerTurn = turn % players.size();
 		Player player = players.get(playerTurn); 
@@ -92,7 +91,7 @@ public class Game {
 	}
 	
 	public void attackPhase() {
-		System.out.println("AttackPhase");
+		println("AttackPhase");
 		phase = 2;
 		gui.selectingAC = true;
 		gui.setAttackingPhase();
