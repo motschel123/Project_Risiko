@@ -303,7 +303,7 @@ public class GUI extends javax.swing.JWindow {
 	}
 
 	private CountryLabel addCountryLabel(Dimension pos, String countryName) {
-		CountryLabel cLabel = new CountryLabel(pos, game.getCountryByName(countryName));
+		final CountryLabel cLabel = new CountryLabel(pos, game.getCountryByName(countryName));
 
 		cLabel.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {

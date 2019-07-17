@@ -47,8 +47,6 @@ public class Game {
 		}
 		
 		
-		
-		
 		// start game mechanics
 		startGame();
 		
@@ -151,6 +149,8 @@ public class Game {
 		System.out.println("MovePhase");
 		
 		gui.setPhase("Move phase");
+		
+		nextTurn();
 	}
 	
 	public Country getCountryByName(String name) {
